@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-gray-900 antialiased;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-luga-accent;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white bg-luga-gradient transition-all duration-200 hover:opacity-90 active:scale-[0.98] shadow-md hover:shadow-lg;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white border-2 border-white transition-all duration-200 hover:bg-white hover:text-luga-dark active:scale-[0.98];
+  }
+
+  .btn-outline-blue {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-luga-royal border-2 border-luga-royal transition-all duration-200 hover:bg-luga-royal hover:text-white active:scale-[0.98];
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-extrabold text-luga-dark leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-luga-text-secondary leading-relaxed;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .gradient-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center bg-luga-gradient text-white flex-shrink-0;
+  }
+}
