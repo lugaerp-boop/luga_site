@@ -5,23 +5,23 @@ const steps = [
   {
     icon: Building2,
     number: "01",
-    title: "Cadastre sua empresa",
+    title: "Cadastre sua empresa em minutos",
     description:
-      "Configure os dados da empresa, usuários e parâmetros do sistema em minutos. Sem servidor local, sem instalação.",
+      "Configure os dados, usuários e parâmetros. Sem servidor, sem instalação — só o navegador.",
   },
   {
     icon: FileSpreadsheet,
     number: "02",
-    title: "Importe seus dados",
+    title: "Importe seus dados via Excel",
     description:
-      "Suba sua base de clientes e produtos via Excel. O sistema valida, detecta duplicidades e mantém histórico completo.",
+      "Clientes, fornecedores, produtos e mais — o sistema valida os dados, detecta duplicidades e mantém histórico completo de tudo que foi importado.",
   },
   {
     icon: Rocket,
     number: "03",
-    title: "Comece a usar",
+    title: "Comece a operar no mesmo dia",
     description:
-      "Emita NF-e, controle financeiro e gere relatórios no dia seguinte. Treinamento incluso no processo de implementação.",
+      "Emita NF-e, controle o financeiro e gere relatórios. Treinamento feito junto com a nossa equipe.",
   },
 ];
 
@@ -33,9 +33,9 @@ export default function HowItWorks() {
           <p className="text-sm font-semibold text-luga-accent uppercase tracking-wider mb-3">
             Onboarding
           </p>
-          <h2 className="section-title">Comece a usar em 3 passos</h2>
+          <h2 className="section-title">Três passos para parar de improvisar</h2>
           <p className="section-subtitle mt-4 max-w-xl mx-auto">
-            Implementação rápida, sem complicação. Da contratação ao sistema funcionando em menos de uma semana.
+            Sem migração complicada. Sem meses de treinamento. Você opera no mesmo dia.
           </p>
         </AnimatedSection>
 

@@ -20,29 +20,29 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
               <span className="w-2 h-2 rounded-full bg-luga-accent animate-pulse" />
               <span className="text-sm font-medium text-white">
-                Especializado em Hortifruti e CEASA
+                Feito para o setor hortifruti e CEASA
               </span>
             </div>
 
             {/* H1 */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6">
-              O ERP feito para quem distribui{" "}
+              Do CEASA ao cliente final,{" "}
               <span className="text-luga-light">
-                hortifrutigranjeiros
+                tudo sob controle.
               </span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-lg text-white/80 leading-relaxed mb-8 max-w-xl">
-              Financeiro, estoque, NF-e e boletos integrados — em um sistema
-              moderno, web e acessível.{" "}
-              <span className="text-white font-semibold">R$ 900/mês. Tudo incluso.</span>
+              Financeiro, estoque, NF-e e boletos integrados — em um só sistema,
+              acessível de qualquer lugar,{" "}
+              <span className="text-white font-semibold">sem instalação.</span>
             </p>
 
             {/* Quick wins */}
             <ul className="flex flex-wrap gap-x-6 gap-y-2 mb-10">
               {[
-                "Sem contrato de fidelidade",
+                "Acesso de qualquer dispositivo",
                 "100% web — sem instalação",
                 "Suporte incluso",
               ].map((item) => (
@@ -55,12 +55,12 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4">
-              <Link href="/contato" className="btn-primary text-base py-3.5 px-7">
-                Solicitar demonstração
+              <Link href="/demonstracao" className="btn-primary text-base py-3.5 px-7">
+                Quero uma demonstração
                 <ArrowRight size={18} />
               </Link>
               <Link href="/funcionalidades" className="btn-outline-white text-base py-3.5 px-7">
-                Ver funcionalidades
+                Conhecer o sistema
               </Link>
             </div>
           </div>

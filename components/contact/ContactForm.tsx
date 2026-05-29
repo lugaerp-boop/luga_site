@@ -14,7 +14,7 @@ const segments = [
   "Outro",
 ];
 
-export default function ContactForm() {
+export default function ContactForm({ buttonLabel = "Enviar mensagem" }: { buttonLabel?: string }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, setState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -188,7 +188,7 @@ export default function ContactForm() {
         ) : (
           <>
             <Send size={16} />
-            Enviar mensagem
+            {buttonLabel}
           </>
         )}
       </button>

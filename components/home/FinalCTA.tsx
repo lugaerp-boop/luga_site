@@ -17,20 +17,20 @@ export default function FinalCTA() {
             Pronto para começar?
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5">
-            Pronto para modernizar sua distribuidora?
+            Pronto para modernizar sua operação?
           </h2>
           <p className="text-lg text-white/80 mb-10 leading-relaxed">
-            Comece hoje.{" "}
-            <span className="text-white font-semibold">Sem contrato de fidelidade.</span>{" "}
-            Suporte incluso. Implementação em menos de uma semana.
+            Agende uma demonstração gratuita e veja o sistema funcionando{" "}
+            <span className="text-white font-semibold">com os dados da sua empresa.</span>{" "}
+            Sem compromisso.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contato" className="btn-primary text-base py-4 px-8">
+            <Link href="/demonstracao" className="btn-primary text-base py-4 px-8">
               <MessageCircle size={18} />
-              Falar com consultor
+              Agendar demonstração gratuita
             </Link>
-            <Link href="/precos" className="btn-outline-white text-base py-4 px-8">
-              Ver planos e preços
+            <Link href="/funcionalidades" className="btn-outline-white text-base py-4 px-8">
+              Conhecer o sistema
               <ArrowRight size={18} />
             </Link>
           </div>

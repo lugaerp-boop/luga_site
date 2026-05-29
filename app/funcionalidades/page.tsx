@@ -17,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: "Funcionalidades — Módulos do Luga ERP",
   description:
-    "Conheça os 12 módulos do Luga ERP: cadastros, financeiro, NF-e, boletos, relatórios e muito mais. Tudo incluso em R$ 900/mês para distribuidoras e atacadistas.",
+    "Conheça os 12 módulos do Luga ERP: cadastros, financeiro, NF-e, boletos, relatórios e muito mais. Feito para distribuidoras e atacadistas de hortifrutigranjeiros.",
   alternates: { canonical: "https://lugaerp.com.br/funcionalidades" },
 };
 
@@ -42,10 +42,10 @@ const modules = [
       "Entradas e saídas integradas ao estoque e financeiro. Importação de NF-e por XML, tabelas de preço personalizadas e controle de rotas e entregas.",
     features: [
       "Entrada de NF-e com importação de XML direto",
-      "Confirmação atômica: estoque + financeiro em um clique",
-      "Tabelas de preço personalizadas por cliente",
+      "Estoque e financeiro atualizados em um clique",
+      "Tabelas de preço por cliente",
       "Controle de rotas e motoristas",
-      "Devolução e cancelamento integrados",
+      "Movimentação de saída com emissão de NF-e integrada",
     ],
   },
   {
@@ -78,13 +78,12 @@ const modules = [
     icon: FileText,
     title: "Fiscal e Contábil",
     description:
-      "Emissão de NF-e com API real e fallback MockProvider. DANFE, XML, cancelamento, SPED Fiscal e DRE integrados sem módulos adicionais.",
+      "Emita NF-e com DANFE e XML inclusos. Apuração fiscal simplificada com SPED, DRE e Balanço Patrimonial — tudo integrado, sem módulos adicionais.",
     features: [
-      "Emissão de NF-e com DANFE e XML inclusos",
-      "Cancelamento e carta de correção integrados",
+      "Emissão de NF-e com DANFE e XML",
       "SPED Fiscal e EFD Contribuições",
-      "DRE e Balanço Patrimonial automatizados",
-      "Exportação para contabilidade (AlterData)",
+      "DRE e Balanço Patrimonial",
+      "Mais de 200 relatórios fiscais em PDF e Excel",
     ],
   },
   {
@@ -117,13 +116,12 @@ const modules = [
     icon: Settings,
     title: "Sistema e Administração",
     description:
-      "Controle total de usuários, perfis de acesso e parâmetros por empresa. Logs de auditoria e alertas prioritários em tempo real.",
+      "Controle quem acessa o quê, importe dados com rastreabilidade total e mantenha sua equipe operando com segurança desde o primeiro dia.",
     features: [
-      "Controle de usuários e perfis de acesso granular",
-      "Histórico completo de importações com rastreabilidade",
-      "Parâmetros por empresa (multi-empresa)",
-      "Logs de auditoria completos",
-      "Alertas prioritários em tempo real",
+      "Multi-usuário com perfis de acesso",
+      "Importação de dados via Excel com histórico completo",
+      "Logs de auditoria de todas as operações",
+      "Treinamento incluso na implantação",
     ],
   },
 ];
@@ -188,7 +186,7 @@ export default function FuncionalidadesPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/contato" className="btn-primary inline-flex text-sm">
+                  <Link href="/demonstracao" className="btn-primary inline-flex text-sm">
                     Solicitar demonstração
                     <ArrowRight size={16} />
                   </Link>
@@ -222,7 +220,7 @@ export default function FuncionalidadesPage() {
               Agende uma demonstração gratuita e veja o sistema funcionando
               para o seu tipo de negócio.
             </p>
-            <Link href="/contato" className="btn-primary text-base py-4 px-8 inline-flex">
+            <Link href="/demonstracao" className="btn-primary text-base py-4 px-8 inline-flex">
               Solicitar demonstração gratuita
               <ArrowRight size={18} />
             </Link>

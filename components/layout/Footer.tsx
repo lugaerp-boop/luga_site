@@ -4,7 +4,7 @@ import { Mail, ArrowRight } from "lucide-react";
 
 const productLinks = [
   { href: "/funcionalidades", label: "Funcionalidades" },
-  { href: "/precos", label: "Planos e Preços" },
+  { href: "/contato", label: "Solicitar proposta" },
   { href: "/#modulos", label: "Módulos" },
 ];
 
@@ -15,7 +15,7 @@ const companyLinks = [
 
 const supportLinks = [
   { href: "/contato", label: "Suporte técnico" },
-  { href: "/contato", label: "Solicitar demonstração" },
+  { href: "/demonstracao", label: "Solicitar demonstração" },
   { href: "/contato", label: "Parceria comercial" },
 ];
 
@@ -28,11 +28,11 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <Image
-                src="/logo.png"
+                src="/logo-footer.png"
                 alt="Luga ERP"
-                width={130}
-                height={52}
-                className="h-12 w-auto object-contain brightness-0 invert"
+                width={200}
+                height={67}
+                className="h-20 w-auto object-contain"
               />
             </div>
             <p className="text-sm text-luga-text-tertiary leading-relaxed mb-5">

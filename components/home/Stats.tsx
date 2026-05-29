@@ -1,8 +1,8 @@
 import CountUp from "@/components/shared/CountUp";
 
 const stats = [
-  { value: 12, suffix: "+", label: "Módulos inclusos" },
-  { prefix: "R$ ", value: 900, suffix: "/mês", label: "Plano único" },
+  { value: 12, suffix: "+", label: "Módulos integrados" },
+  { value: 1, suffix: " semana", label: "Para estar operando" },
   { value: 100, suffix: "% web", label: "Sem instalação" },
   { value: 3, suffix: "+ CEASAs", label: "Atendidas no RJ" },
 ];

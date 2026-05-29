@@ -13,33 +13,33 @@ import {
 const modules = [
   {
     icon: DollarSign,
-    title: "Financeiro completo",
-    description: "Contas a receber e a pagar, fluxo de caixa, cheques e empréstimos integrados.",
+    title: "Financeiro sem surpresas",
+    description: "Saiba exatamente o que tem a receber e a pagar — sem susto no fechamento do mês.",
   },
   {
     icon: BarChart3,
-    title: "Controle de estoque",
-    description: "Custo médio ponderado calculado automaticamente a cada entrada de mercadoria.",
+    title: "Estoque em tempo real",
+    description: "Custo médio sempre atualizado, movimentação registrada a cada entrada.",
   },
   {
     icon: FileText,
-    title: "Emissão de NF-e",
-    description: "DANFE, XML e cancelamento integrados. Importação de XML de entrada direto do fornecedor.",
+    title: "NF-e em segundos",
+    description: "Emita nota fiscal em segundos, sem sair do sistema. DANFE e XML inclusos.",
   },
   {
     icon: Download,
-    title: "Relatórios em PDF e Excel",
-    description: "Mais de 200 relatórios com filtros por período, cliente e vendedor. Exportação com um clique.",
+    title: "Relatórios prontos para usar",
+    description: "Mais de 200 relatórios — exporte em PDF ou Excel com um clique.",
   },
   {
     icon: Users,
-    title: "Cadastros com completude",
-    description: "Clientes, fornecedores e produtos com indicador de completude e detecção de duplicidades.",
+    title: "Cadastros organizados",
+    description: "Clientes e produtos com alertas de cadastro incompleto e detecção de duplicidades.",
   },
   {
     icon: Landmark,
-    title: "Boletos integrados ao banco",
-    description: "Emissão direta no BB, Itaú e Bradesco. Remessa, retorno CNAB e baixa automática.",
+    title: "Boletos pelo sistema",
+    description: "Gere e envie boletos direto pelo sistema, integrado ao BB, Itaú e Bradesco.",
   },
 ];
 
@@ -51,10 +51,10 @@ export default function Modules() {
           <p className="text-sm font-semibold text-luga-accent uppercase tracking-wider mb-3">
             Módulos
           </p>
-          <h2 className="section-title">Tudo que sua empresa precisa em um só lugar</h2>
+          <h2 className="section-title">Tudo que sua operação precisa, integrado</h2>
           <p className="section-subtitle mt-4 max-w-2xl mx-auto">
-            12 módulos integrados, sem custo adicional, acessíveis pelo navegador
-            a qualquer hora do dia.
+            Cada módulo conversa com os outros. O que entra no estoque já reflete
+            no financeiro. O que o cliente deve já vira boleto.
           </p>
         </AnimatedSection>
 

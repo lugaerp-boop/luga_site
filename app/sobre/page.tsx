@@ -24,7 +24,7 @@ const mvv = [
   {
     icon: Heart,
     title: "Valores",
-    text: "Proximidade com o cliente, simplicidade na operação, preço justo, suporte humano e evolução contínua baseada no uso real.",
+    text: "Proximidade com o cliente, simplicidade na operação, transparência total, suporte humano e evolução contínua baseada no uso real.",
   },
 ];
 
@@ -232,7 +232,7 @@ export default function SobrePage() {
                 <Mail size={16} />
                 lugaerp@gmail.com
               </a>
-              <Link href="/contato" className="btn-primary inline-flex text-sm">
+              <Link href="/demonstracao" className="btn-primary inline-flex text-sm">
                 Falar com a equipe
                 <ArrowRight size={16} />
               </Link>

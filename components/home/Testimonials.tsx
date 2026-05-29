@@ -5,21 +5,21 @@ const testimonials = [
   {
     name: "Roberto Alves",
     role: "Permissionário — CEASA São Gonçalo",
-    text: "Antes eu usava planilha e um sistema desktop dos anos 90. Com a Luga, consegui organizar as contas a receber, emitir boleto direto pelo sistema e ainda saber quanto produto eu tenho em estoque em tempo real. Não tem como voltar atrás.",
+    text: "Antes eu controlava tudo em caderno e planilha. Hoje o financeiro fecha sozinho, emito boleto direto pelo sistema e sei o que tenho em estoque sem precisar contar. Não tem como voltar atrás.",
     rating: 5,
     initials: "RA",
   },
   {
-    name: "Fernanda Costa",
-    role: "Distribuidora de hortifruti — Niterói, RJ",
-    text: "O que mais me impressionou foi a importação pelo XML da NF-e. Chega o XML do fornecedor, eu importo, o estoque já atualiza e o financeiro já lança a conta a pagar. Economizo umas duas horas por dia com isso.",
+    name: "Maria Santos",
+    role: "Proprietária — Distribuidora Verde Hortifruti, Niterói RJ",
+    text: "A importação do XML da nota do fornecedor mudou minha vida. Chega o arquivo, eu importo, o estoque atualiza e a conta a pagar já aparece no sistema. Economizo horas todo dia.",
     rating: 5,
-    initials: "FC",
+    initials: "MS",
   },
   {
     name: "Marcos Pereira",
     role: "Atacadista de bebidas — Rio de Janeiro, RJ",
-    text: "Tentei outros sistemas antes. Ou eram caros demais, ou não entendiam o setor. A Luga foi a única que tinha tabela de preço por cliente de verdade, com vasilhame retornável e integração bancária que funciona. E o suporte responde rápido.",
+    text: "Já usei outros sistemas. Nenhum entendia tabela de preço por cliente de verdade, nem vasilhame retornável. A Luga entende. E o suporte atende de verdade — não some depois que você assina.",
     rating: 5,
     initials: "MP",
   },
@@ -43,10 +43,10 @@ export default function Testimonials() {
           <p className="text-sm font-semibold text-luga-accent uppercase tracking-wider mb-3">
             Depoimentos
           </p>
-          <h2 className="section-title">Quem já usa a Luga</h2>
+          <h2 className="section-title">O que dizem quem já usa</h2>
           <p className="section-subtitle mt-4 max-w-2xl mx-auto">
-            Clientes reais do setor hortifruti e atacadista que modernizaram
-            sua gestão com a Luga ERP.
+            Distribuidoras e permissionários do setor hortifruti que trocaram
+            o improviso por um sistema que entende o negócio deles.
           </p>
         </AnimatedSection>
 

@@ -6,25 +6,25 @@ const segments = [
     icon: Store,
     title: "Permissionários de CEASA",
     description:
-      "Controle total das suas operações dentro e fora do mercado. Cadastros, estoque e financeiro integrados ao dia a dia do CEASA.",
+      "Controle o que entra, o que sai e o que tem a receber — sem depender de caderno ou planilha.",
   },
   {
     icon: Truck,
     title: "Distribuidoras de alimentos",
     description:
-      "Do pedido à entrega, tudo registrado e integrado ao financeiro. Rotas, tabelas de preço por cliente e NF-e em um só lugar.",
+      "Do pedido à entrega: financeiro, NF-e e cobrança integrados em um lugar só.",
   },
   {
     icon: Apple,
     title: "Atacadistas de hortifruti",
     description:
-      "Gestão de estoque com custo médio automático e rastreabilidade completa. Entrada por XML de NF-e e confirmação atômica.",
+      "Estoque atualizado em tempo real, custo médio automático, sem erro de digitação.",
   },
   {
     icon: Package,
     title: "Distribuidoras de bebidas",
     description:
-      "Controle de vasilhames retornáveis, rotas e tabelas de preço personalizadas por cliente e segmento.",
+      "Gerencie vasilhames, rotas e tabelas de preço por cliente — tudo dentro do sistema.",
   },
 ];
 
@@ -36,9 +36,9 @@ export default function ForWho() {
           <p className="text-sm font-semibold text-luga-accent uppercase tracking-wider mb-3">
             Segmentos atendidos
           </p>
-          <h2 className="section-title">Feito para o seu segmento</h2>
+          <h2 className="section-title">Você vai se reconhecer aqui</h2>
           <p className="section-subtitle mt-4 max-w-2xl mx-auto">
-            A Luga ERP não é um ERP genérico adaptado. Cada módulo foi construído
+            A Luga não é um ERP genérico adaptado. Cada detalhe foi construído
             pensando no dia a dia de quem distribui alimentos.
           </p>
         </AnimatedSection>

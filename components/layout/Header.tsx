@@ -7,7 +7,6 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "/funcionalidades", label: "Funcionalidades" },
-  { href: "/precos", label: "Preços" },
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },
 ];
@@ -61,7 +60,7 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
-            <Link href="/contato" className="btn-primary text-sm py-2.5 px-5">
+            <Link href="/demonstracao" className="btn-primary text-sm py-2.5 px-5">
               Solicitar demonstração
             </Link>
           </div>
@@ -94,7 +93,7 @@ export default function Header() {
             ))}
           </nav>
           <Link
-            href="/contato"
+            href="/demonstracao"
             onClick={() => setMenuOpen(false)}
             className="btn-primary text-center mt-2"
           >
@@ -109,11 +108,11 @@ export default function Header() {
 function LugaLogo() {
   return (
     <Image
-      src="/logo.png"
-      alt="Luga ERP — Gestão completa. Resultados reais."
-      width={140}
-      height={56}
-      className="h-10 w-auto object-contain"
+      src="/logo-header.png"
+      alt="Luga ERP"
+      width={200}
+      height={67}
+      className="h-20 w-auto object-contain"
       priority
     />
   );
