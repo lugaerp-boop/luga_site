@@ -4,19 +4,20 @@ import { Mail, ArrowRight } from "lucide-react";
 
 const productLinks = [
   { href: "/funcionalidades", label: "Funcionalidades" },
-  { href: "/contato", label: "Solicitar proposta" },
+  { href: "/demonstracao", label: "Agendar demonstração" },
   { href: "/#modulos", label: "Módulos" },
+];
+
+const segmentLinks = [
+  { href: "/erp-para-distribuidoras", label: "ERP para Distribuidoras" },
+  { href: "/erp-para-ceasa", label: "ERP para CEASA" },
+  { href: "/erp-para-hortifruti", label: "ERP para Hortifruti" },
 ];
 
 const companyLinks = [
   { href: "/sobre", label: "Sobre nós" },
   { href: "/contato", label: "Fale conosco" },
-];
-
-const supportLinks = [
   { href: "/contato", label: "Suporte técnico" },
-  { href: "/demonstracao", label: "Solicitar demonstração" },
-  { href: "/contato", label: "Parceria comercial" },
 ];
 
 export default function Footer() {
@@ -32,16 +33,15 @@ export default function Footer() {
                 alt="Luga ERP"
                 width={200}
                 height={67}
-                className="h-20 w-auto object-contain"
+                className="h-14 w-auto object-contain"
               />
             </div>
             <p className="text-sm text-luga-text-tertiary leading-relaxed mb-5">
-              <span className="text-white">Gestão completa.</span>{" "}
-              <span className="text-luga-accent">Resultados reais.</span>
+              <span className="text-white">Do mercado para o mercado.</span>
             </p>
             <p className="text-xs text-luga-text-tertiary leading-relaxed">
-              Especializado em distribuidoras e atacadistas de
-              hortifrutigranjeiros. Desenvolvido para CEASAs do Rio de Janeiro.
+              Nascido no dia a dia do mercado. Feito para empresas de
+              distribuição, hortifruti, atacado e alimentos.
             </p>
           </div>
 
@@ -52,7 +52,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               {productLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.href + link.label}>
                   <Link
                     href={link.href}
                     className="text-sm text-luga-text-tertiary hover:text-white transition-colors flex items-center gap-1 group"
@@ -65,13 +65,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Empresa */}
+          {/* Segmentos */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Empresa
+              Segmentos
             </h3>
             <ul className="space-y-3">
-              {companyLinks.map((link) => (
+              {segmentLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -85,10 +85,10 @@ export default function Footer() {
             </ul>
 
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4 mt-8">
-              Suporte
+              Empresa
             </h3>
             <ul className="space-y-3">
-              {supportLinks.map((link) => (
+              {companyLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
@@ -121,13 +121,14 @@ export default function Footer() {
 
             <div className="mt-8 p-4 bg-white/5 rounded-xl border border-white/10">
               <p className="text-xs text-luga-text-tertiary mb-3">
-                Ficou com dúvidas? Fale com nossa equipe comercial.
+                Quer ver o sistema antes de decidir?
               </p>
               <Link
-                href="/contato"
+                href="/demonstracao"
+                data-event="click_demo"
                 className="text-xs font-semibold text-luga-accent hover:text-luga-light transition-colors flex items-center gap-1"
               >
-                Entrar em contato
+                Agendar demonstração gratuita
                 <ArrowRight size={12} />
               </Link>
             </div>

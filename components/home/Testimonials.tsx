@@ -1,74 +1,70 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
-import { Star } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
-const testimonials = [
+// TODO: Substituir por depoimentos reais validados com clientes.
+// Os textos abaixo são placeholders — não devem ir para produção como se fossem reais.
+
+const differentiators = [
   {
-    name: "Roberto Alves",
-    role: "Permissionário — CEASA São Gonçalo",
-    text: "Antes eu controlava tudo em caderno e planilha. Hoje o financeiro fecha sozinho, emito boleto direto pelo sistema e sei o que tenho em estoque sem precisar contar. Não tem como voltar atrás.",
-    rating: 5,
-    initials: "RA",
+    title: "Especializado no setor",
+    description:
+      "Não é um ERP genérico adaptado. Cada detalhe foi construído pensando em quem distribui, vende e cobra no mercado alimentício.",
   },
   {
-    name: "Maria Santos",
-    role: "Proprietária — Distribuidora Verde Hortifruti, Niterói RJ",
-    text: "A importação do XML da nota do fornecedor mudou minha vida. Chega o arquivo, eu importo, o estoque atualiza e a conta a pagar já aparece no sistema. Economizo horas todo dia.",
-    rating: 5,
-    initials: "MS",
+    title: "NF-e e boleto no mesmo sistema",
+    description:
+      "Emissão de nota fiscal e geração de boleto integrados ao BB, Itaú e Bradesco — sem precisar de sistemas separados.",
   },
   {
-    name: "Marcos Pereira",
-    role: "Atacadista de bebidas — Rio de Janeiro, RJ",
-    text: "Já usei outros sistemas. Nenhum entendia tabela de preço por cliente de verdade, nem vasilhame retornável. A Luga entende. E o suporte atende de verdade — não some depois que você assina.",
-    rating: 5,
-    initials: "MP",
+    title: "No ar em menos de 1 semana",
+    description:
+      "Implantação rápida com migração dos seus dados via Excel e treinamento da equipe inclusos no contrato.",
+  },
+  {
+    title: "Suporte real, sem sumiço",
+    description:
+      "Nossa equipe acompanha a sua operação. Você não fica sozinho depois que assina — suporte incluso sem custo adicional.",
+  },
+  {
+    title: "Preço único, sem surpresa",
+    description:
+      "Um único valor mensal com tudo incluso: usuários ilimitados, todos os módulos, suporte e treinamento. Consulte nosso valor.",
+  },
+  {
+    title: "100% web, sem instalação",
+    description:
+      "Acesse de qualquer navegador, de qualquer lugar. Sem servidor próprio, sem manutenção de software, sem atualização manual.",
   },
 ];
 
-function Stars({ count }: { count: number }) {
-  return (
-    <div className="flex gap-0.5" aria-label={`${count} estrelas`}>
-      {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
-      ))}
-    </div>
-  );
-}
-
 export default function Testimonials() {
   return (
-    <section className="bg-luga-bg py-20" id="depoimentos">
+    <section className="bg-luga-bg py-20" id="diferenciais">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-14">
           <p className="text-sm font-semibold text-luga-accent uppercase tracking-wider mb-3">
-            Depoimentos
+            Por que o Luga ERP
           </p>
-          <h2 className="section-title">O que dizem quem já usa</h2>
+          <h2 className="section-title">Feito para quem vive a rotina do mercado</h2>
           <p className="section-subtitle mt-4 max-w-2xl mx-auto">
-            Distribuidoras e permissionários do setor hortifruti que trocaram
-            o improviso por um sistema que entende o negócio deles.
+            Criado a partir da realidade operacional do CEASA e de empresas de
+            distribuição, hortifruti, atacado e alimentos.
           </p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <AnimatedSection key={t.name} delay={i * 120}>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {differentiators.map((item, i) => (
+            <AnimatedSection key={item.title} delay={i * 100}>
               <div className="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm h-full card-hover flex flex-col">
-                <div className="mb-4">
-                  <Stars count={t.rating} />
+                <div className="w-10 h-10 rounded-xl bg-luga-gradient flex items-center justify-center mb-4 flex-shrink-0">
+                  <CheckCircle2 size={20} className="text-white" />
                 </div>
-                <p className="text-gray-700 leading-relaxed text-sm flex-1 mb-6">
-                  &ldquo;{t.text}&rdquo;
+                <h3 className="text-base font-bold text-luga-dark mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-luga-text-secondary leading-relaxed">
+                  {item.description}
                 </p>
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                  <div className="w-10 h-10 rounded-full bg-luga-gradient flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs font-bold text-white">{t.initials}</span>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-luga-dark">{t.name}</p>
-                    <p className="text-xs text-luga-text-secondary">{t.role}</p>
-                  </div>
-                </div>
               </div>
             </AnimatedSection>
           ))}

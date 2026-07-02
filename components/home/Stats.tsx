@@ -4,7 +4,7 @@ const stats = [
   { value: 12, suffix: "+", label: "Módulos integrados" },
   { value: 1, suffix: " semana", label: "Para estar operando" },
   { value: 100, suffix: "% web", label: "Sem instalação" },
-  { value: 3, suffix: "+ CEASAs", label: "Atendidas no RJ" },
+  { value: 200, suffix: "+", label: "Relatórios inclusos" },
 ];
 
 export default function Stats() {
@@ -20,7 +20,6 @@ export default function Stats() {
               <span className="text-2xl lg:text-3xl font-extrabold text-luga-dark">
                 <CountUp
                   end={stat.value}
-                  prefix={stat.prefix ?? ""}
                   suffix={stat.suffix ?? ""}
                 />
               </span>

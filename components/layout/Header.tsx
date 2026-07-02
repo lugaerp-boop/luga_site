@@ -39,7 +39,7 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-18">
+        <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label="Luga ERP — página inicial">
             <LugaLogo />
@@ -60,8 +60,12 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
-            <Link href="/demonstracao" className="btn-primary text-sm py-2.5 px-5">
-              Solicitar demonstração
+            <Link
+              href="/demonstracao"
+              data-event="click_demo"
+              className="btn-primary text-sm py-2.5 px-5"
+            >
+              Agendar demonstração
             </Link>
           </div>
 
@@ -95,9 +99,10 @@ export default function Header() {
           <Link
             href="/demonstracao"
             onClick={() => setMenuOpen(false)}
+            data-event="click_demo"
             className="btn-primary text-center mt-2"
           >
-            Solicitar demonstração
+            Agendar demonstração gratuita
           </Link>
         </div>
       )}
@@ -112,7 +117,7 @@ function LugaLogo() {
       alt="Luga ERP"
       width={200}
       height={67}
-      className="h-20 w-auto object-contain"
+      className="h-12 lg:h-14 w-auto object-contain"
       priority
     />
   );

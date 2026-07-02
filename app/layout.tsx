@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | Luga ERP",
   },
   description:
-    "ERP especializado em distribuidoras e atacadistas de hortifrutigranjeiros. Financeiro, NF-e, boletos e estoque integrados. R$ 900/mês, tudo incluso, sem contrato.",
+    "ERP especializado em distribuidoras e atacadistas de hortifrutigranjeiros. Financeiro, NF-e, boletos e estoque integrados. Tudo incluso.",
   keywords: [
     "ERP hortifruti",
     "sistema gestão CEASA",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: "Luga ERP",
     title: "Luga ERP — Gestão completa para distribuidoras e atacadistas",
     description:
-      "Sistema ERP especializado em hortifruti e CEASA. R$ 900/mês com financeiro, NF-e, boletos e estoque integrados.",
+      "Sistema ERP especializado em hortifruti e CEASA. Financeiro, NF-e, boletos e estoque integrados. Tudo incluso.",
     images: [
       {
         url: "/og-image.jpg",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Luga ERP — Gestão completa para distribuidoras",
     description:
-      "ERP especializado em hortifruti e CEASA. R$ 900/mês tudo incluso.",
+      "ERP especializado em hortifruti e CEASA. Tudo incluso.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -76,12 +76,6 @@ export default function RootLayout({
               operatingSystem: "Web",
               description:
                 "ERP especializado em distribuidoras e atacadistas de hortifrutigranjeiros",
-              offers: {
-                "@type": "Offer",
-                price: "900",
-                priceCurrency: "BRL",
-                billingIncrement: "P1M",
-              },
               url: "https://lugaerp.com.br",
               email: "lugaerp@gmail.com",
             }),
