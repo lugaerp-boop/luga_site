@@ -117,7 +117,7 @@ function LugaLogo() {
       alt="Luga ERP"
       width={200}
       height={67}
-      className="h-12 lg:h-14 w-auto object-contain"
+      className="h-16 lg:h-20 w-auto object-contain"
       priority
     />
   );
