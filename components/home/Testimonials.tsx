@@ -13,7 +13,7 @@ const differentiators = [
   {
     title: "NF-e e boleto no mesmo sistema",
     description:
-      "Emissão de nota fiscal e geração de boleto integrados ao BB, Itaú e Bradesco — sem precisar de sistemas separados.",
+      "Emissão de NF-e (plano Completo) e boletos multi-banco com Pix e CNAB — sem precisar de sistemas separados.",
   },
   {
     title: "No ar em menos de 1 semana",
@@ -26,9 +26,9 @@ const differentiators = [
       "Nossa equipe acompanha a sua operação. Você não fica sozinho depois que assina — suporte incluso sem custo adicional.",
   },
   {
-    title: "Preço único, sem surpresa",
+    title: "Dois planos, sem surpresa",
     description:
-      "Um único valor mensal com tudo incluso: usuários ilimitados, todos os módulos, suporte e treinamento. Consulte nosso valor.",
+      "Essencial ou Completo (com módulo Fiscal), sempre com usuários ilimitados, suporte e treinamento inclusos. Consulte nosso valor.",
   },
   {
     title: "100% web, sem instalação",

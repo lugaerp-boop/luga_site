@@ -94,12 +94,12 @@ const modules: Module[] = [
   {
     icon: Landmark,
     title: "Boletos integrados",
-    description: "Gere e envie boletos integrado ao BB, Itaú e Bradesco. Remessa e retorno CNAB 240/400.",
+    description: "Gere e envie boletos multi-banco, com Pix e remessa/retorno CNAB 240/400.",
   },
   {
     icon: Download,
     title: "Relatórios para decisão",
-    description: "Mais de 200 relatórios em PDF e Excel. Inadimplência, vendas, estoque, fluxo — tudo à mão.",
+    description: "14 categorias de relatórios, centenas de modelos em PDF e Excel. Inadimplência, vendas, estoque, fluxo — tudo à mão.",
   },
   {
     icon: Users,
@@ -133,12 +133,12 @@ const faqs: FAQ[] = [
   {
     question: "Posso emitir NF-e diretamente pelo Luga?",
     answer:
-      "Sim. A emissão de NF-e com DANFE e XML está integrada ao sistema. Você não precisa sair para outro software ou contratar módulo separado.",
+      "Sim, no plano Completo. A emissão de NF-e com DANFE e XML está integrada ao sistema, junto com apuração de ICMS e SPED. Você não precisa sair para outro software.",
   },
   {
     question: "O boleto é gerado e enviado direto pelo sistema?",
     answer:
-      "Sim. Os boletos são gerados e integrados ao Banco do Brasil, Itaú e Bradesco. O sistema faz remessa e retorno CNAB 240/400 e baixa automática por retorno bancário.",
+      "Sim, nos dois planos. Os boletos são gerados com integração multi-banco e Pix. O sistema faz remessa e retorno CNAB 240/400, conciliação bancária via Open Finance e baixa automática por retorno bancário.",
   },
   {
     question: "Como o Luga ajuda no controle de inadimplência?",

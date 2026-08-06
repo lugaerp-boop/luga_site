@@ -4,9 +4,9 @@ import {
   DollarSign,
   BarChart3,
   FileText,
-  Download,
   Users,
   Landmark,
+  MessageCircle,
   ArrowRight,
 } from "lucide-react";
 
@@ -14,32 +14,32 @@ const modules = [
   {
     icon: DollarSign,
     title: "Financeiro sem surpresas",
-    description: "Saiba exatamente o que tem a receber e a pagar — sem susto no fechamento do mês.",
+    description: "Contas a receber, a pagar, caixa, cofre e fluxo de caixa — sem susto no fechamento do mês.",
   },
   {
     icon: BarChart3,
     title: "Estoque em tempo real",
-    description: "Custo médio sempre atualizado, movimentação registrada a cada entrada.",
+    description: "Custo médio sempre atualizado, movimentação registrada a cada entrada e saída.",
   },
   {
     icon: FileText,
-    title: "NF-e em segundos",
-    description: "Emita nota fiscal em segundos, sem sair do sistema. DANFE e XML inclusos.",
+    title: "Fiscal integrado (plano Completo)",
+    description: "NF-e, apuração de ICMS e SPED Fiscal dentro do próprio ERP, sem sistema separado.",
   },
   {
-    icon: Download,
-    title: "Relatórios prontos para usar",
-    description: "Mais de 200 relatórios — exporte em PDF ou Excel com um clique.",
+    icon: MessageCircle,
+    title: "Cobrança automática",
+    description: "Régua de cobrança via WhatsApp e 14 categorias de relatórios, com centenas de modelos prontos.",
   },
   {
     icon: Users,
-    title: "Cadastros organizados",
+    title: "26 cadastros integrados",
     description: "Clientes e produtos com alertas de cadastro incompleto e detecção de duplicidades.",
   },
   {
     icon: Landmark,
-    title: "Boletos pelo sistema",
-    description: "Gere e envie boletos direto pelo sistema, integrado ao BB, Itaú e Bradesco.",
+    title: "Boletos, Pix e conciliação",
+    description: "Boletos multi-banco, Pix e conciliação bancária automática via Open Finance.",
   },
 ];
 

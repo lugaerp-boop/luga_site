@@ -2,13 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import {
+  LayoutDashboard,
   Users,
   ShoppingCart,
+  Truck,
+  Boxes,
   DollarSign,
+  Wallet,
+  TrendingUp,
   Landmark,
-  FileText,
+  Receipt,
+  MapPin,
   BarChart3,
-  Tag,
+  FileText,
   Settings,
   CheckCircle2,
   ArrowRight,
@@ -17,111 +23,200 @@ import {
 export const metadata: Metadata = {
   title: "Funcionalidades — Módulos do Luga ERP",
   description:
-    "Conheça os 12 módulos do Luga ERP: cadastros, financeiro, NF-e, boletos, relatórios e muito mais. Feito para distribuidoras e atacadistas de hortifrutigranjeiros.",
+    "Conheça os módulos do Luga ERP: cadastros, vendas, compras, estoque, financeiro, cobrança, boletos, fiscal e 14 categorias de relatórios. Feito para distribuidoras e atacadistas de hortifrutigranjeiros.",
   alternates: { canonical: "https://lugaerp.com.br/funcionalidades" },
 };
 
-const modules = [
+type Plan = "Ambos" | "Completo";
+
+const modules: {
+  icon: React.ElementType;
+  title: string;
+  plan: Plan;
+  description: string;
+  features: string[];
+}[] = [
+  {
+    icon: LayoutDashboard,
+    title: "Dashboard",
+    plan: "Ambos",
+    description:
+      "Visão geral da operação assim que você entra no sistema: indicadores em tempo real, acesso rápido às telas mais usadas e alertas do que precisa de atenção hoje.",
+    features: [
+      "Indicadores financeiros e operacionais em tempo real",
+      "Acesso rápido aos módulos mais usados",
+      "Alertas de pendências e vencimentos",
+      "Visão consolidada entre filiais",
+    ],
+  },
   {
     icon: Users,
     title: "Central de Cadastros",
+    plan: "Ambos",
     description:
-      "Gerencie clientes, fornecedores, produtos e serviços com controle de completude e rastreabilidade total. Importação facilitada via Excel com validação automática.",
+      "Um hub único com 26 cadastros organizados em 4 categorias, com KPIs e alertas de duplicidade para você nunca operar com dado errado ou repetido.",
     features: [
-      "Clientes e fornecedores com % de completude",
-      "Importação via Excel com validação em tempo real",
+      "26 cadastros organizados em 4 categorias",
+      "KPIs de completude e qualidade do cadastro",
       "Detecção automática de duplicidades",
-      "Produtos com dados fiscais (NCM, CFOP, CST)",
-      "Histórico completo de todas as importações",
+      "Importação via Excel com validação em tempo real",
     ],
   },
   {
     icon: ShoppingCart,
-    title: "Movimentação Operacional",
+    title: "Vendas e Precificação",
+    plan: "Ambos",
     description:
-      "Entradas e saídas integradas ao estoque e financeiro. Importação de NF-e por XML, tabelas de preço personalizadas e controle de rotas e entregas.",
+      "Pedidos, notas de saída e tabelas de preço por cliente ou canal, com baixa em lote e natureza de operação configurável.",
     features: [
-      "Entrada de NF-e com importação de XML direto",
-      "Estoque e financeiro atualizados em um clique",
-      "Tabelas de preço por cliente",
-      "Controle de rotas e motoristas",
-      "Movimentação de saída com emissão de NF-e integrada",
+      "Pedidos, NF de saída e condição de pagamento",
+      "Tabelas de preço por cliente e por canal",
+      "Baixa em lote e natureza de operação",
+      "Importação e exportação de tabelas via planilha",
+    ],
+  },
+  {
+    icon: Truck,
+    title: "Compras e Logística",
+    plan: "Ambos",
+    description:
+      "Notas de entrada, devoluções e baixa em lote de um lado; controle de frete, CTe e rateio entre entregas do outro — tudo integrado ao estoque.",
+    features: [
+      "Notas fiscais de entrada e devolução de compra",
+      "Baixa em lote de despesas e compras",
+      "Controle de frete, CTe e faltas na entrega",
+      "Rateio de custo de frete entre entregas",
+    ],
+  },
+  {
+    icon: Boxes,
+    title: "Controle de Estoque",
+    plan: "Ambos",
+    description:
+      "Saldo em tempo real, movimentações, inventário e ajuste de custo — com registro de perdas e quebras para o número sempre bater com o galpão.",
+    features: [
+      "Saldo e movimentações em tempo real",
+      "Inventário e ajuste automático de custo médio",
+      "Registro de perdas e quebras",
+      "Integração automática com compras e vendas",
     ],
   },
   {
     icon: DollarSign,
-    title: "Financeiro",
+    title: "Contas a Receber e a Pagar",
+    plan: "Ambos",
     description:
-      "Controle completo das finanças com contas a receber, a pagar, fluxo de caixa projetado vs realizado e conciliação bancária.",
+      "Cadastro e baixa de títulos com status claro — aberto, parcialmente pago, liquidado ou vencido — individualmente ou em lote.",
     features: [
       "Contas a receber e a pagar integradas",
-      "Fluxo de caixa projetado vs realizado",
-      "Conciliação bancária simplificada",
-      "Cheques pré-datados e emitidos",
-      "Empréstimos e adiantamentos com parcelas",
+      "Status por título: aberto, parc. pago, liquidado, vencido",
+      "Baixa individual ou em lote",
+      "Histórico completo por cliente e fornecedor",
+    ],
+  },
+  {
+    icon: Wallet,
+    title: "Caixa, Cofre e Cobrança WhatsApp",
+    plan: "Ambos",
+    description:
+      "Abertura, movimentação e fechamento de caixa com PDF de sessão, sangrias e controle do dinheiro físico — mais uma régua automática de cobrança por WhatsApp para boletos vencidos ou a vencer.",
+    features: [
+      "Abertura, movimentações e fechamento com PDF de sessão",
+      "Sangrias e controle de dinheiro físico no cofre",
+      "Régua de cobrança automática via WhatsApp",
+      "Envio para clientes com boleto vencido ou a vencer",
+    ],
+  },
+  {
+    icon: TrendingUp,
+    title: "Fluxo de Caixa, DRE e Capital de Giro",
+    plan: "Ambos",
+    description:
+      "Projeção e realização de entradas e saídas, DRE, capital de giro e comparativo entre prazo médio de recebimento e de pagamento.",
+    features: [
+      "Fluxo de caixa projetado vs. realizado",
+      "DRE e Capital de Giro",
+      "Comparativo PMR x PMP",
+      "Visão consolidada por período e por filial",
     ],
   },
   {
     icon: Landmark,
-    title: "Boletos e Banco",
+    title: "Boletos, Pix e Conciliação Bancária",
+    plan: "Ambos",
     description:
-      "Emissão direta de boletos integrada aos principais bancos do Brasil. Remessa, retorno CNAB e baixa automática por arquivo bancário.",
+      "Emissão multi-banco, Pix com QR Code estático e dinâmico, remessa e retorno CNAB 240/400 — com conciliação automática via Open Finance.",
     features: [
-      "Emissão direta integrada ao BB, Itaú e Bradesco",
-      "Remessa e retorno CNAB 240 e 400",
-      "Baixa automática por retorno bancário",
-      "Duplicatas e carnês parcelados",
-      "Histórico e logs de todas as operações",
+      "Emissão de boletos multi-banco",
+      "Pix — QR Code estático e dinâmico",
+      "CNAB 240 e 400 (remessa e retorno)",
+      "Conciliação bancária automática com Open Finance",
     ],
   },
   {
-    icon: FileText,
-    title: "Fiscal e Contábil",
+    icon: Receipt,
+    title: "Duplicatas, Cheques e Empréstimos",
+    plan: "Ambos",
     description:
-      "Emita NF-e com DANFE e XML inclusos. Apuração fiscal simplificada com SPED, DRE e Balanço Patrimonial — tudo integrado, sem módulos adicionais.",
+      "Emissão, protesto e liquidação de duplicatas mercantis, controle de cheques emitidos e recebidos, e gestão de contratos de empréstimo com tabela de parcelas.",
     features: [
-      "Emissão de NF-e com DANFE e XML",
-      "SPED Fiscal e EFD Contribuições",
-      "DRE e Balanço Patrimonial",
-      "Mais de 200 relatórios fiscais em PDF e Excel",
+      "Duplicatas mercantis — emissão, protesto e liquidação",
+      "Cheques emitidos e recebidos",
+      "Contratos de empréstimo e tabela de parcelas",
+      "Controle de saldo devedor",
+    ],
+  },
+  {
+    icon: MapPin,
+    title: "Mapa de Entregas",
+    plan: "Ambos",
+    description:
+      "Visualização geográfica de clientes e entregas pendentes ou realizadas, com cobertura de rotas para organizar a logística do dia.",
+    features: [
+      "Visualização geográfica de clientes",
+      "Entregas pendentes e realizadas no mapa",
+      "Cobertura e organização de rotas",
     ],
   },
   {
     icon: BarChart3,
     title: "Relatórios Gerenciais",
+    plan: "Ambos",
     description:
-      "Mais de 200 relatórios em PDF e Excel com filtros por período, cliente e vendedor. Exportação com um clique e bobina para impressoras térmicas.",
+      "14 categorias e centenas de modelos prontos — a receber, a pagar, vendas, compras, estoque, caixa, estratégico e mais — com modo configurável pelo usuário.",
     features: [
-      "Mais de 200 relatórios em PDF e Excel",
-      "Filtros por período, cliente e vendedor",
-      "Exportação com um clique",
-      "Relatórios de boletas, estoque, caixa e empréstimos",
-      "Bobina para impressoras térmicas",
+      "14 categorias de relatórios, centenas de modelos",
+      "A Receber, A Pagar, Vendas, Compras, Estoque, Caixa e Estratégico",
+      "Modo configurável pelo usuário",
+      "Exportação em PDF e Excel com um clique",
     ],
   },
   {
-    icon: Tag,
-    title: "Tabelas de Preço",
+    icon: FileText,
+    title: "Fiscal e Contábil",
+    plan: "Completo",
     description:
-      "Uma tabela de preços por cliente ou segmento, com produtos selecionáveis individualmente. Importação e exportação via Excel e PDF.",
+      "Emissão de NF-e integrada via Focus NFe, apuração de ICMS, livros fiscais e SPED — tudo dentro do próprio ERP, sem exportar dados para outro sistema.",
     features: [
-      "Uma tabela por cliente ou segmento de mercado",
-      "Produtos selecionáveis individualmente",
-      "Importação e exportação via Excel e PDF",
-      "Visualização em tela cheia para vendas",
-      "Preço diferenciado por unidade de venda",
+      "Emissão de NF-e — geração, cancelamento e consulta",
+      "Apuração de ICMS: crédito vs. débito, saldo e GNRE",
+      "Livros Fiscais e SPED Fiscal (EFD ICMS/IPI e Contribuições)",
+      "Estoque Fiscal para o bloco H do SPED",
+      "Exportação contábil: AlterData, CSV, TXT e XML",
+      "Cadastros fiscais: NCM, CFOP, CST e alíquotas",
     ],
   },
   {
     icon: Settings,
-    title: "Sistema e Administração",
+    title: "Permissões, Usuários e Multi-filial",
+    plan: "Ambos",
     description:
-      "Controle quem acessa o quê, importe dados com rastreabilidade total e mantenha sua equipe operando com segurança desde o primeiro dia.",
+      "Controle por papel — operador, financeiro, vendedor, comprador — com granularidade por módulo, e gestão de múltiplas filiais no mesmo sistema.",
     features: [
-      "Multi-usuário com perfis de acesso",
-      "Importação de dados via Excel com histórico completo",
-      "Logs de auditoria de todas as operações",
-      "Treinamento incluso na implantação",
+      "Controle de acesso por papel (perfil de usuário)",
+      "Granularidade de permissão por módulo",
+      "Multi-filial e multi-usuário",
+      "Usuários ilimitados, sem cobrança por pessoa",
     ],
   },
 ];
@@ -135,14 +230,17 @@ export default function FuncionalidadesPage() {
           <AnimatedSection>
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
               <span className="w-2 h-2 rounded-full bg-luga-accent" />
-              <span className="text-sm font-medium text-white">12 módulos integrados</span>
+              <span className="text-sm font-medium text-white">
+                +14 módulos financeiros · multi-filial
+              </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
               Tudo que você precisa para gerir sua empresa
             </h1>
             <p className="text-lg text-white/80 max-w-2xl mx-auto">
-              12 módulos integrados, pensados para o dia a dia de distribuidoras e
-              atacadistas. Sem custo extra, sem módulo bloqueado.
+              Módulos integrados, pensados para o dia a dia de distribuidoras e
+              atacadistas. Planos Essencial e Completo — o Completo com módulo
+              Fiscal e Contábil integrado.
             </p>
           </AnimatedSection>
         </div>
@@ -166,8 +264,19 @@ export default function FuncionalidadesPage() {
                   direction={i % 2 === 0 ? "left" : "right"}
                   className={i % 2 === 1 ? "lg:col-start-2" : ""}
                 >
-                  <div className="gradient-icon w-14 h-14 mb-5">
-                    <mod.icon size={26} />
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="gradient-icon w-14 h-14">
+                      <mod.icon size={26} />
+                    </div>
+                    <span
+                      className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
+                        mod.plan === "Completo"
+                          ? "bg-luga-accent/10 text-luga-accent"
+                          : "bg-emerald-50 text-emerald-600"
+                      }`}
+                    >
+                      {mod.plan === "Completo" ? "Plano Completo" : "Essencial e Completo"}
+                    </span>
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-luga-dark mb-4">
                     {mod.title}

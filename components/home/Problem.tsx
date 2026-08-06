@@ -48,7 +48,7 @@ export default function Problem() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {pains.map((pain, i) => (
             <AnimatedSection key={pain.title} delay={i * 100}>
-              <div className="bg-luga-bg rounded-2xl p-6 border border-gray-100 h-full">
+              <div className="bg-luga-bg rounded-2xl p-6 border border-gray-100 h-full card-hover">
                 <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center mb-4">
                   <pain.icon size={22} className="text-red-500" />
                 </div>

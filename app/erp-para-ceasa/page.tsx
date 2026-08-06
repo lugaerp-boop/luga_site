@@ -97,12 +97,12 @@ const howLugaHelps = [
   {
     icon: Landmark,
     title: "Boletos integrados ao banco",
-    description: "BB, Itaú e Bradesco. Remessa e retorno CNAB. Baixa automática por retorno bancário.",
+    description: "Multi-banco, com Pix e remessa/retorno CNAB. Baixa automática por retorno bancário.",
   },
   {
     icon: ShieldCheck,
     title: "Relatórios para cada momento",
-    description: "Mais de 200 relatórios em PDF e Excel: inadimplência, vendas, estoque, fluxo de caixa e mais.",
+    description: "14 categorias de relatórios, centenas de modelos: inadimplência, vendas, estoque, fluxo de caixa e mais.",
   },
 ];
 
@@ -125,12 +125,12 @@ const modules: Module[] = [
   {
     icon: Landmark,
     title: "Boletos",
-    description: "Geração e envio integrado ao banco. Remessa e retorno CNAB 240/400.",
+    description: "Geração multi-banco com Pix. Remessa e retorno CNAB 240/400.",
   },
   {
     icon: Download,
     title: "Relatórios",
-    description: "Mais de 200 opções em PDF e Excel. DRE e Balanço Patrimonial inclusos.",
+    description: "14 categorias de relatórios, centenas de modelos em PDF e Excel. DRE e Fluxo de Caixa inclusos.",
   },
   {
     icon: Users,
@@ -158,7 +158,7 @@ const faqs: FAQ[] = [
   {
     question: "O sistema emite NF-e e boleto?",
     answer:
-      "Sim. NF-e com DANFE e XML integrado e boletos com integração ao BB, Itaú e Bradesco. Remessa e retorno CNAB 240/400 e baixa automática por retorno bancário inclusos.",
+      "Sim. NF-e com DANFE e XML integrado no plano Completo, e boletos multi-banco com Pix nos dois planos. Remessa e retorno CNAB 240/400 e baixa automática por retorno bancário inclusos.",
   },
   {
     question: "Em quanto tempo começo a operar?",
@@ -168,7 +168,7 @@ const faqs: FAQ[] = [
   {
     question: "Qual é o preço?",
     answer:
-      "Valor mensal com tudo incluso: todos os módulos, usuários ilimitados, suporte e treinamento. Consulte nosso valor.",
+      "A Luga tem dois planos: Essencial (sem fiscal) e Completo (com NF-e, ICMS e SPED). Nos dois, usuários ilimitados, suporte e treinamento inclusos. Consulte nosso valor.",
   },
 ];
 
@@ -223,7 +223,7 @@ export default function ErpParaCeasaPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {pains.map((pain, i) => (
               <AnimatedSection key={pain.title} delay={i * 80}>
-                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full">
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full card-hover">
                   <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center mb-4">
                     <pain.icon size={22} className="text-red-500" />
                   </div>

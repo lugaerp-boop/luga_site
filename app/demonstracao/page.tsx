@@ -52,9 +52,9 @@ const demoItems = [
   { label: "Produtos", description: "Tabelas de preço por cliente" },
   { label: "Estoque", description: "Movimentação e custo médio em tempo real" },
   { label: "Financeiro", description: "Contas a pagar, receber e fluxo de caixa" },
-  { label: "Boletos", description: "Geração integrada ao BB, Itaú e Bradesco" },
-  { label: "NF-e", description: "Emissão com DANFE e XML em segundos" },
-  { label: "Relatórios", description: "Mais de 200 opções em PDF e Excel" },
+  { label: "Boletos", description: "Multi-banco, Pix e conciliação via Open Finance" },
+  { label: "NF-e", description: "Emissão com DANFE e XML (plano Completo)" },
+  { label: "Relatórios", description: "14 categorias, centenas de modelos em PDF e Excel" },
   { label: "Permissões", description: "Multi-usuário com perfis de acesso" },
 ];
 
@@ -82,7 +82,7 @@ const faqs: FAQ[] = [
   {
     question: "O sistema emite NF-e e boleto?",
     answer:
-      "Sim. NF-e com DANFE e XML integrado e boletos diretamente pelo sistema, com integração ao Banco do Brasil, Itaú e Bradesco. Remessa e retorno CNAB 240/400 inclusos.",
+      "Sim. NF-e com DANFE e XML integrado no plano Completo, e boletos multi-banco com Pix diretamente pelo sistema nos dois planos. Remessa e retorno CNAB 240/400 inclusos.",
   },
   {
     question: "Como funciona a implantação?",
@@ -156,7 +156,7 @@ export default function DemonstracaoPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {pains.map((pain, i) => (
               <AnimatedSection key={pain.title} delay={i * 80}>
-                <div className="bg-luga-bg rounded-2xl p-6 border border-gray-100 h-full">
+                <div className="bg-luga-bg rounded-2xl p-6 border border-gray-100 h-full card-hover">
                   <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center mb-4">
                     <pain.icon size={22} className="text-red-500" />
                   </div>
@@ -187,7 +187,7 @@ export default function DemonstracaoPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {demoItems.map((item, i) => (
               <AnimatedSection key={item.label} delay={i * 60}>
-                <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm flex items-start gap-4">
+                <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm flex items-start gap-4 card-hover">
                   <div className="w-8 h-8 rounded-lg bg-luga-gradient flex items-center justify-center flex-shrink-0 mt-0.5">
                     <CheckCircle2 size={16} className="text-white" />
                   </div>

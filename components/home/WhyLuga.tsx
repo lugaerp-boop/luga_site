@@ -6,8 +6,9 @@ type CellValue = "check" | "cross" | "partial";
 const comparison: { label: string; luga: CellValue; erp: CellValue; planilha: CellValue }[] = [
   { label: "Especializado em hortifruti/atacado", luga: "check", erp: "cross", planilha: "cross" },
   { label: "Implantação em menos de 1 semana", luga: "check", erp: "cross", planilha: "check" },
-  { label: "NF-e incluso", luga: "check", erp: "partial", planilha: "cross" },
-  { label: "Boletos integrados ao banco", luga: "check", erp: "partial", planilha: "cross" },
+  { label: "NF-e integrada (plano Completo)", luga: "check", erp: "partial", planilha: "cross" },
+  { label: "Boletos multi-banco e Pix", luga: "check", erp: "partial", planilha: "cross" },
+  { label: "Cobrança automática via WhatsApp", luga: "check", erp: "cross", planilha: "cross" },
   { label: "100% web — sem instalação", luga: "check", erp: "cross", planilha: "check" },
   { label: "Suporte incluso", luga: "check", erp: "partial", planilha: "cross" },
   { label: "Importação de dados via Excel", luga: "check", erp: "cross", planilha: "check" },

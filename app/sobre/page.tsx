@@ -82,7 +82,7 @@ export default function SobrePage() {
               <div className="bg-luga-bg rounded-2xl p-8 border border-gray-100">
                 <div className="grid grid-cols-2 gap-6">
                   {[
-                    { number: "12+", label: "Módulos inclusos" },
+                    { number: "+14", label: "Módulos financeiros" },
                     { number: "100%", label: "Web, sem instalação" },
                     { number: "3+", label: "CEASAs atendidas" },
                     { number: "< 1 sem.", label: "Para estar operando" },

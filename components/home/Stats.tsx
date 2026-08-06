@@ -1,10 +1,10 @@
 import CountUp from "@/components/shared/CountUp";
 
 const stats = [
-  { value: 12, suffix: "+", label: "Módulos integrados" },
-  { value: 1, suffix: " semana", label: "Para estar operando" },
+  { value: 26, suffix: "", label: "Cadastros integrados" },
+  { value: 14, suffix: "+", label: "Módulos financeiros" },
+  { value: 14, suffix: "", label: "Categorias de relatórios" },
   { value: 100, suffix: "% web", label: "Sem instalação" },
-  { value: 200, suffix: "+", label: "Relatórios inclusos" },
 ];
 
 export default function Stats() {

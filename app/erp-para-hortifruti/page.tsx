@@ -104,12 +104,12 @@ const modules: Module[] = [
   {
     icon: Landmark,
     title: "Boletos",
-    description: "Geração integrada ao BB, Itaú e Bradesco com remessa e retorno CNAB.",
+    description: "Geração multi-banco com Pix, remessa e retorno CNAB e conciliação via Open Finance.",
   },
   {
     icon: Download,
     title: "Relatórios",
-    description: "Mais de 200 relatórios em PDF e Excel: vendas, estoque, inadimplência e mais.",
+    description: "14 categorias de relatórios, centenas de modelos: vendas, estoque, inadimplência e mais.",
   },
   {
     icon: Users,
@@ -146,7 +146,7 @@ const faqs: FAQ[] = [
   {
     question: "Emite NF-e para pessoa jurídica e física?",
     answer:
-      "Sim. O Luga emite NF-e para PJ e PF, com DANFE e XML. O sistema está integrado à SEFAZ para transmissão e autorização em tempo real.",
+      "Sim, no plano Completo. O Luga emite NF-e para PJ e PF, com DANFE e XML, além de apuração de ICMS e SPED integrados. O sistema está integrado à SEFAZ para transmissão e autorização em tempo real.",
   },
   {
     question: "Como funciona a implantação?",
@@ -156,7 +156,7 @@ const faqs: FAQ[] = [
   {
     question: "Qual o custo mensal?",
     answer:
-      "Valor mensal com tudo incluso: todos os módulos, usuários ilimitados, suporte e treinamento. Sem cobrança por usuário, sem módulo bloqueado. Consulte nosso valor.",
+      "A Luga tem dois planos: Essencial (sem módulo fiscal) e Completo (com NF-e, ICMS e SPED integrados). Nos dois, usuários ilimitados, suporte e treinamento inclusos, sem cobrança por pessoa. Consulte nosso valor.",
   },
 ];
 
@@ -189,7 +189,7 @@ export default function ErpParaHortifrutiPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {pains.map((pain, i) => (
               <AnimatedSection key={pain.title} delay={i * 80}>
-                <div className="bg-luga-bg rounded-2xl p-6 border border-gray-100 h-full">
+                <div className="bg-luga-bg rounded-2xl p-6 border border-gray-100 h-full card-hover">
                   <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center mb-4">
                     <pain.icon size={22} className="text-red-500" />
                   </div>

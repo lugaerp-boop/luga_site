@@ -3,16 +3,45 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { Check, ArrowRight } from "lucide-react";
 
-const included = [
-  "Financeiro: contas a pagar, receber e fluxo de caixa",
-  "Estoque em tempo real com custo médio automático",
-  "Emissão de NF-e com DANFE e XML",
-  "Boletos integrados ao BB, Itaú e Bradesco",
-  "Mais de 200 relatórios em PDF e Excel",
-  "Cadastros, tabelas de preço e operação comercial",
-  "Usuários ilimitados, sem cobrança por pessoa",
-  "Importação dos seus dados via Excel",
-  "Implantação, treinamento e suporte inclusos",
+const plans = [
+  {
+    name: "Essencial",
+    tagline: "Sem módulo fiscal",
+    description:
+      "Para quem emite NF-e por outro sistema ou não precisa de apuração fiscal integrada.",
+    highlighted: false,
+    included: [
+      "Dashboard com visão geral em tempo real",
+      "Central de Cadastros — 26 cadastros em 4 categorias",
+      "Vendas, Compras, Estoque e Precificação",
+      "Logística — frete, CTe e controle de entregas",
+      "Contas a Receber e a Pagar, Caixa, Cofre e Cheques",
+      "Fluxo de Caixa, DRE e Capital de Giro",
+      "Cobrança automática via WhatsApp",
+      "Boletos multi-banco, Pix e CNAB 240/400",
+      "Conciliação Bancária + Open Finance",
+      "Duplicatas, Empréstimos e Mapa de Entregas",
+      "Relatórios — 14 categorias, centenas de modelos",
+      "Usuários ilimitados · Multi-filial",
+    ],
+  },
+  {
+    name: "Completo",
+    tagline: "Com módulo Fiscal e Contábil",
+    description:
+      "Tudo do Essencial, mais NF-e, apuração de ICMS e SPED integrados ao ERP.",
+    highlighted: true,
+    included: [
+      "Tudo do plano Essencial",
+      "Emissão de NF-e integrada (Focus NFe)",
+      "Apuração de ICMS — crédito, débito e GNRE",
+      "Livros Fiscais — entradas, saídas e apuração",
+      "SPED Fiscal — EFD ICMS/IPI e EFD Contribuições",
+      "Estoque Fiscal para o bloco H do SPED",
+      "Exportação contábil — AlterData, CSV, TXT e XML",
+      "Cadastros fiscais — NCM, CFOP, CST e alíquotas",
+    ],
+  },
 ];
 
 function WhatsAppIcon({ size = 18 }: { size?: number }) {
@@ -31,88 +60,97 @@ export default function Pricing() {
           <p className="text-sm font-semibold text-luga-accent uppercase tracking-wider mb-3">
             Investimento
           </p>
-          <h2 className="section-title">Tudo incluso. Sem módulo bloqueado.</h2>
+          <h2 className="section-title">Dois planos. Sem cobrança por usuário.</h2>
           <p className="section-subtitle mt-4 max-w-2xl mx-auto">
-            Nada de cobrança por usuário. Você contrata e já tem acesso a tudo
-            que sua operação precisa. Consulte nosso valor.
+            Escolha o plano Essencial ou o Completo (com módulo Fiscal e
+            Contábil). Usuários ilimitados nos dois. Consulte nosso valor.
           </p>
         </AnimatedSection>
 
-        <AnimatedSection delay={100}>
-          <div className="max-w-4xl mx-auto bg-white rounded-3xl border border-gray-200 shadow-lg overflow-hidden grid md:grid-cols-2">
-            {/* CTA block */}
-            <div className="bg-luga-hero p-8 lg:p-10 flex flex-col justify-center text-white">
-              <p className="text-sm font-semibold text-luga-accent uppercase tracking-wider mb-4">
-                Plano único
-              </p>
-              <h3 className="text-2xl font-extrabold text-white mb-2">
-                Preço sob consulta
-              </h3>
-              <p className="text-white/80 text-sm mb-6">
-                Tudo incluso. Consulte nosso valor.
-              </p>
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+          {plans.map((plan, i) => (
+            <AnimatedSection key={plan.name} delay={i * 100}>
+              <div
+                className={`relative h-full flex flex-col rounded-3xl p-8 lg:p-10 transition-all duration-300 ${
+                  plan.highlighted
+                    ? "bg-luga-hero text-white shadow-xl border-2 border-luga-accent"
+                    : "bg-white text-luga-dark border border-gray-200 shadow-sm hover:shadow-lg"
+                }`}
+              >
+                {plan.highlighted && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold uppercase tracking-wider bg-luga-accent text-white px-4 py-1 rounded-full shadow-md">
+                    Recomendado
+                  </span>
+                )}
 
-              <ul className="space-y-2.5 mb-8">
-                {[
-                  "Usuários ilimitados",
-                  "No ar em menos de 1 semana",
-                  "Suporte e treinamento inclusos",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-white/90">
-                    <Check size={16} className="text-luga-accent flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+                <p
+                  className={`text-sm font-semibold uppercase tracking-wider mb-3 ${
+                    plan.highlighted ? "text-luga-accent" : "text-luga-royal"
+                  }`}
+                >
+                  Plano {plan.name}
+                </p>
+                <h3
+                  className={`text-2xl font-extrabold mb-1 ${
+                    plan.highlighted ? "text-white" : "text-luga-dark"
+                  }`}
+                >
+                  {plan.tagline}
+                </h3>
+                <p className={`text-sm mb-6 ${plan.highlighted ? "text-white/80" : "text-luga-text-secondary"}`}>
+                  {plan.description}
+                </p>
 
-              <div className="flex flex-col gap-3">
+                <ul className="space-y-2.5 mb-8 flex-1">
+                  {plan.included.map((item) => (
+                    <li
+                      key={item}
+                      className={`flex items-start gap-2.5 text-sm ${
+                        plan.highlighted ? "text-white/90" : "text-gray-700"
+                      }`}
+                    >
+                      <Check
+                        size={16}
+                        className={`mt-0.5 flex-shrink-0 ${
+                          plan.highlighted ? "text-luga-accent" : "text-emerald-500"
+                        }`}
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
                 <a
-                  href={whatsappUrl("Olá! Vim pelo site da Luga ERP e quero saber mais sobre o valor do sistema.")}
+                  href={whatsappUrl(
+                    `Olá! Vim pelo site da Luga ERP e quero saber mais sobre o plano ${plan.name}.`
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-event="click_whatsapp"
-                  className="inline-flex items-center justify-center gap-2 w-full text-base py-3.5 px-7 rounded-lg font-semibold text-white bg-[#25D366] hover:bg-[#1ebe5b] active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg"
+                  className={`inline-flex items-center justify-center gap-2 w-full text-base py-3.5 px-7 rounded-lg font-semibold transition-all duration-200 active:scale-[0.98] shadow-md hover:shadow-lg ${
+                    plan.highlighted
+                      ? "text-white bg-[#25D366] hover:bg-[#1ebe5b]"
+                      : "text-white bg-luga-royal hover:bg-luga-dark"
+                  }`}
                 >
                   <WhatsAppIcon />
                   Consultar valor
                 </a>
-                <Link
-                  href="/demonstracao"
-                  data-event="click_demo"
-                  className="inline-flex items-center justify-center gap-2 w-full text-sm py-3 px-7 rounded-lg font-semibold text-white border border-white/30 hover:bg-white/10 active:scale-[0.98] transition-all duration-200"
-                >
-                  Agendar demonstração gratuita
-                  <ArrowRight size={15} />
-                </Link>
               </div>
-            </div>
+            </AnimatedSection>
+          ))}
+        </div>
 
-            {/* Included list */}
-            <div className="p-8 lg:p-10">
-              <p className="text-sm font-semibold text-luga-dark uppercase tracking-wider mb-5">
-                O que está incluso
-              </p>
-              <ul className="space-y-3">
-                {included.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-gray-700">
-                    <Check size={16} className="text-emerald-500 mt-0.5 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection className="text-center mt-6">
+        <AnimatedSection className="text-center mt-8">
           <p className="text-sm text-luga-text-secondary">
             Quer ver funcionando antes de decidir?{" "}
             <Link
               href="/demonstracao"
               data-event="click_demo"
-              className="text-luga-royal font-semibold hover:text-luga-accent underline transition-colors"
+              className="text-luga-royal font-semibold hover:text-luga-accent underline transition-colors inline-flex items-center gap-1"
             >
               Peça uma demonstração gratuita
+              <ArrowRight size={14} />
             </Link>
             .
           </p>
