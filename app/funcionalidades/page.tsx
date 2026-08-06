@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import WaveDivider from "@/components/shared/WaveDivider";
 import {
   LayoutDashboard,
   Users,
@@ -225,7 +226,7 @@ export default function FuncionalidadesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-luga-hero pt-28 pb-16">
+      <section className="relative bg-luga-hero pt-28 pb-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
@@ -244,6 +245,8 @@ export default function FuncionalidadesPage() {
             </p>
           </AnimatedSection>
         </div>
+
+        <WaveDivider />
       </section>
 
       {/* Modules — alternating layout */}

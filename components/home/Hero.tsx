@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { whatsappUrl } from "@/lib/whatsapp";
+import WaveDivider from "@/components/shared/WaveDivider";
 
 function WhatsAppIcon({ size = 18 }: { size?: number }) {
   return (
@@ -98,6 +99,8 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      <WaveDivider />
     </section>
   );
 }
