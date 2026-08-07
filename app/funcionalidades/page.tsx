@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DemoModal from "@/components/funcionalidades/DemoModal";
 import {
@@ -19,6 +20,8 @@ import {
   Settings,
   CheckCircle2,
   ArrowRight,
+  ShieldCheck,
+  Download,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -30,12 +33,17 @@ export const metadata: Metadata = {
 
 type Plan = "Ambos" | "Completo";
 
+type Visual =
+  | { type: "screenshot"; src: string; position: string }
+  | { type: "map" | "reports" | "fiscal" | "permissions" };
+
 const modules: {
   icon: React.ElementType;
   title: string;
   plan: Plan;
   description: string;
   features: string[];
+  visual: Visual;
 }[] = [
   {
     icon: LayoutDashboard,
@@ -48,6 +56,7 @@ const modules: {
       "Acesso rápido aos módulos mais usados",
       "Alertas de pendências e vencimentos",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel1.png", position: "center 15%" },
   },
   {
     icon: Users,
@@ -61,6 +70,7 @@ const modules: {
       "Detecção automática de duplicidades",
       "Importação via Excel com validação em tempo real",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel2.png", position: "center 12%" },
   },
   {
     icon: ShoppingCart,
@@ -74,6 +84,7 @@ const modules: {
       "Baixa em lote e natureza de operação",
       "Importação e exportação de tabelas via planilha",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel3.png", position: "62% 28%" },
   },
   {
     icon: Truck,
@@ -87,6 +98,7 @@ const modules: {
       "Controle de frete, CTe e faltas na entrega",
       "Rateio de custo de frete entre entregas",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel3.png", position: "18% 62%" },
   },
   {
     icon: Boxes,
@@ -100,6 +112,7 @@ const modules: {
       "Registro de perdas e quebras",
       "Integração automática com compras e vendas",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel3.png", position: "90% 22%" },
   },
   {
     icon: DollarSign,
@@ -113,6 +126,7 @@ const modules: {
       "Baixa individual ou em lote",
       "Histórico completo por cliente e fornecedor",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel4.png", position: "center 18%" },
   },
   {
     icon: Wallet,
@@ -126,6 +140,7 @@ const modules: {
       "Régua de cobrança automática via WhatsApp",
       "Envio para clientes com boleto vencido ou a vencer",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel4.png", position: "82% 42%" },
   },
   {
     icon: TrendingUp,
@@ -139,6 +154,7 @@ const modules: {
       "Comparativo PMR x PMP",
       "Visão consolidada por período e por filial",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel1.png", position: "32% 68%" },
   },
   {
     icon: Landmark,
@@ -152,6 +168,7 @@ const modules: {
       "CNAB 240 e 400 (remessa e retorno)",
       "Conciliação bancária automática com Open Finance",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel4.png", position: "92% 10%" },
   },
   {
     icon: Receipt,
@@ -165,6 +182,7 @@ const modules: {
       "Contratos de empréstimo e tabela de parcelas",
       "Controle de saldo devedor",
     ],
+    visual: { type: "screenshot", src: "/Imagem-Carrossel4.png", position: "90% 64%" },
   },
   {
     icon: MapPin,
@@ -177,6 +195,7 @@ const modules: {
       "Entregas pendentes e realizadas no mapa",
       "Cobertura e organização de rotas",
     ],
+    visual: { type: "map" },
   },
   {
     icon: BarChart3,
@@ -190,6 +209,7 @@ const modules: {
       "Modo configurável pelo usuário",
       "Exportação em PDF e Excel com um clique",
     ],
+    visual: { type: "reports" },
   },
   {
     icon: FileText,
@@ -205,6 +225,7 @@ const modules: {
       "Exportação contábil: AlterData, CSV, TXT e XML",
       "Cadastros fiscais: NCM, CFOP, CST e alíquotas",
     ],
+    visual: { type: "fiscal" },
   },
   {
     icon: Settings,
@@ -217,6 +238,7 @@ const modules: {
       "Granularidade de permissão por módulo",
       "Usuários ilimitados, sem cobrança por pessoa",
     ],
+    visual: { type: "permissions" },
   },
 ];
 
@@ -310,6 +332,7 @@ export default function FuncionalidadesPage() {
                     icon={mod.icon}
                     title={mod.title}
                     index={i}
+                    visual={mod.visual}
                   />
                 </AnimatedSection>
               </div>
@@ -340,75 +363,233 @@ export default function FuncionalidadesPage() {
   );
 }
 
+const CARD_COLORS = [
+  "from-blue-600 to-blue-400",
+  "from-indigo-600 to-blue-400",
+  "from-sky-600 to-cyan-400",
+  "from-blue-700 to-indigo-400",
+  "from-teal-600 to-blue-400",
+  "from-blue-500 to-sky-400",
+  "from-indigo-500 to-blue-300",
+  "from-blue-800 to-blue-500",
+];
+
 function ModuleMockup({
   icon: Icon,
   title,
   index,
+  visual,
 }: {
   icon: React.ElementType;
   title: string;
   index: number;
+  visual: Visual;
 }) {
-  const colors = [
-    "from-blue-600 to-blue-400",
-    "from-indigo-600 to-blue-400",
-    "from-sky-600 to-cyan-400",
-    "from-blue-700 to-indigo-400",
-    "from-teal-600 to-blue-400",
-    "from-blue-500 to-sky-400",
-    "from-indigo-500 to-blue-300",
-    "from-blue-800 to-blue-500",
-  ];
+  const color = CARD_COLORS[index % CARD_COLORS.length];
 
   return (
-    <div
-      className={`rounded-2xl bg-gradient-to-br ${colors[index % colors.length]} p-0.5 shadow-xl`}
-    >
+    <div className={`rounded-2xl bg-gradient-to-br ${color} p-0.5 shadow-xl`}>
       <div className="bg-white rounded-2xl p-6">
         <div className="flex items-center gap-3 mb-5 pb-4 border-b border-gray-100">
-          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${colors[index % colors.length]} flex items-center justify-center`}>
+          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center`}>
             <Icon size={18} className="text-white" />
           </div>
           <div>
             <p className="text-sm font-bold text-luga-dark">{title}</p>
             <p className="text-xs text-luga-text-secondary">Luga ERP</p>
           </div>
-          <div className="ml-auto flex gap-1">
+          <div className="ml-auto flex gap-1 items-center">
             <div className="w-2 h-2 rounded-full bg-green-400" />
             <span className="text-xs text-green-600 font-medium">Ativo</span>
           </div>
         </div>
 
-        {/* Generic content rows */}
-        <div className="space-y-3">
-          {[85, 60, 100, 45].map((w, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-luga-bg flex items-center justify-center flex-shrink-0">
-                <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${colors[index % colors.length]}`} />
-              </div>
-              <div className="flex-1">
-                <div className="h-2.5 bg-gray-200 rounded-full overflow-hidden">
-                  <div
-                    className={`h-full bg-gradient-to-r ${colors[index % colors.length]} rounded-full`}
-                    style={{ width: `${w}%` }}
-                  />
-                </div>
-                <div className="flex justify-between mt-1">
-                  <div className="h-2 w-20 bg-gray-100 rounded" />
-                  <span className="text-xs text-luga-text-secondary">{w}%</span>
-                </div>
-              </div>
+        {visual.type === "screenshot" && (
+          <>
+            <div className="relative h-56 sm:h-64 rounded-xl overflow-hidden border border-gray-100 bg-luga-bg">
+              <Image
+                src={visual.src}
+                alt={`Tela de ${title} no Luga ERP`}
+                fill
+                sizes="(min-width: 1024px) 32rem, 90vw"
+                className="object-cover"
+                style={{ objectPosition: visual.position }}
+              />
             </div>
-          ))}
-        </div>
+            <div className="mt-4 flex items-center justify-between">
+              <span className="text-xs text-luga-text-secondary">Tela real do sistema</span>
+              <span className="text-xs font-semibold text-luga-royal">Luga ERP</span>
+            </div>
+          </>
+        )}
 
-        <div className="mt-5 pt-4 border-t border-gray-100 flex justify-between items-center">
-          <span className="text-xs text-luga-text-secondary">Atualizado agora</span>
-          <div className="flex gap-2">
-            <div className="h-7 w-16 rounded-md bg-luga-bg" />
-            <div className={`h-7 w-16 rounded-md bg-gradient-to-r ${colors[index % colors.length]}`} />
+        {visual.type === "map" && <MapMockup color={color} />}
+        {visual.type === "reports" && <ReportsMockup color={color} />}
+        {visual.type === "fiscal" && <FiscalMockup color={color} />}
+        {visual.type === "permissions" && <PermissionsMockup color={color} />}
+      </div>
+    </div>
+  );
+}
+
+function MapMockup({ color }: { color: string }) {
+  const pins = [
+    { x: "18%", y: "70%", delivered: true },
+    { x: "48%", y: "28%", delivered: false },
+    { x: "72%", y: "58%", delivered: true },
+    { x: "85%", y: "22%", delivered: false },
+  ];
+
+  return (
+    <div className="relative h-56 sm:h-64 rounded-xl overflow-hidden border border-gray-100 bg-luga-bg">
+      <div
+        className="absolute inset-0 opacity-60"
+        style={{
+          backgroundImage:
+            "linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path
+          d="M18 70 C 30 40, 40 55, 48 28 C 58 45, 62 50, 72 58 C 78 48, 80 35, 85 22"
+          stroke="#2196F3"
+          strokeWidth="1.2"
+          strokeDasharray="3 2"
+          fill="none"
+          opacity="0.7"
+        />
+      </svg>
+      {pins.map((p, i) => (
+        <div
+          key={i}
+          className="absolute -translate-x-1/2 -translate-y-full flex flex-col items-center"
+          style={{ left: p.x, top: p.y }}
+        >
+          <div
+            className={`w-7 h-7 rounded-full flex items-center justify-center shadow-md ${
+              p.delivered ? "bg-emerald-500" : `bg-gradient-to-br ${color}`
+            }`}
+          >
+            <MapPin size={14} className="text-white" />
           </div>
         </div>
+      ))}
+      <div className="absolute bottom-3 left-3 bg-white rounded-lg px-3 py-1.5 shadow-sm text-xs text-luga-text-secondary flex items-center gap-3">
+        <span className="flex items-center gap-1">
+          <span className="w-2 h-2 rounded-full bg-emerald-500" /> Entregue
+        </span>
+        <span className="flex items-center gap-1">
+          <span className="w-2 h-2 rounded-full bg-luga-royal" /> Pendente
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function ReportsMockup({ color }: { color: string }) {
+  const reports = [
+    { icon: DollarSign, label: "A Receber", tag: "PDF" },
+    { icon: Landmark, label: "A Pagar", tag: "Excel" },
+    { icon: ShoppingCart, label: "Vendas", tag: "PDF" },
+    { icon: Boxes, label: "Estoque", tag: "Excel" },
+  ];
+
+  return (
+    <div className="space-y-2.5">
+      {reports.map((r) => (
+        <div
+          key={r.label}
+          className="flex items-center gap-3 bg-luga-bg rounded-lg px-3 py-2.5 border border-gray-100"
+        >
+          <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0`}>
+            <r.icon size={14} className="text-white" />
+          </div>
+          <span className="text-sm font-medium text-luga-dark flex-1">{r.label}</span>
+          <span className="text-[10px] font-semibold text-luga-text-secondary bg-white rounded px-2 py-1 border border-gray-100">
+            {r.tag}
+          </span>
+          <Download size={14} className="text-luga-text-secondary" />
+        </div>
+      ))}
+      <div className="flex items-center justify-between pt-2 text-xs text-luga-text-secondary">
+        <span>14 categorias disponíveis</span>
+        <span className="font-semibold text-luga-royal">Ver todos →</span>
+      </div>
+    </div>
+  );
+}
+
+function FiscalMockup({ color }: { color: string }) {
+  return (
+    <div className="rounded-xl border border-gray-100 bg-luga-bg p-4">
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <p className="text-sm font-bold text-luga-dark">NF-e Nº 001.847</p>
+          <p className="text-xs text-luga-text-secondary">Distribuidora Verde LTDA</p>
+        </div>
+        <span className="flex items-center gap-1 text-[10px] font-semibold text-emerald-600 bg-emerald-50 rounded-full px-2.5 py-1">
+          <ShieldCheck size={12} />
+          Autorizada
+        </span>
+      </div>
+
+      <div className="flex gap-4">
+        <div className="w-16 h-16 rounded-lg bg-white border border-gray-200 grid grid-cols-4 grid-rows-4 gap-0.5 p-1.5 flex-shrink-0">
+          {Array.from({ length: 16 }).map((_, i) => (
+            <div key={i} className={`rounded-sm ${[1, 2, 4, 7, 9, 11, 13, 14].includes(i) ? "bg-luga-dark" : "bg-transparent"}`} />
+          ))}
+        </div>
+        <div className="flex-1 space-y-2">
+          <div className="flex justify-between text-xs">
+            <span className="text-luga-text-secondary">Valor total</span>
+            <span className="font-bold text-luga-dark">R$ 2.340,00</span>
+          </div>
+          <div className="flex justify-between text-xs">
+            <span className="text-luga-text-secondary">ICMS</span>
+            <span className="font-semibold text-luga-dark">R$ 187,20</span>
+          </div>
+          <div className="flex justify-between text-xs">
+            <span className="text-luga-text-secondary">Chave de acesso</span>
+            <span className="font-mono text-[10px] text-luga-text-secondary">3526...9021</span>
+          </div>
+        </div>
+      </div>
+
+      <div className={`mt-4 h-1.5 rounded-full bg-gradient-to-r ${color}`} />
+    </div>
+  );
+}
+
+function PermissionsMockup({ color }: { color: string }) {
+  const users = [
+    { name: "Ana Souza", role: "Financeiro", initials: "AS" },
+    { name: "Carlos Lima", role: "Vendedor", initials: "CL" },
+    { name: "Rafael Dias", role: "Comprador", initials: "RD" },
+  ];
+
+  return (
+    <div className="space-y-2.5">
+      {users.map((u) => (
+        <div
+          key={u.name}
+          className="flex items-center gap-3 bg-luga-bg rounded-lg px-3 py-2.5 border border-gray-100"
+        >
+          <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0`}>
+            <span className="text-[10px] font-bold text-white">{u.initials}</span>
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-luga-dark truncate">{u.name}</p>
+            <p className="text-[11px] text-luga-text-secondary">{u.role}</p>
+          </div>
+          <div className="w-9 h-5 rounded-full bg-emerald-400 flex items-center px-0.5">
+            <div className="w-4 h-4 rounded-full bg-white ml-auto" />
+          </div>
+        </div>
+      ))}
+      <div className="flex items-center gap-2 pt-1 text-xs text-luga-text-secondary">
+        <Settings size={14} />
+        Permissão por módulo, sem limite de usuários
       </div>
     </div>
   );
