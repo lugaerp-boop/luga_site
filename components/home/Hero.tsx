@@ -25,7 +25,7 @@ export default function Hero() {
           fill
           sizes="100vw"
           priority
-          className="object-cover object-[65%_center] lg:object-[72%_center]"
+          className="object-cover object-[65%_18%] lg:object-[72%_12%]"
         />
         {/* Brand-color gradient so the photo blends into the hero instead of sitting as a separate block */}
         <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(13,27,75,0.97)_0%,rgba(13,27,75,0.92)_28%,rgba(13,27,75,0.68)_50%,rgba(21,101,192,0.42)_72%,rgba(21,101,192,0.22)_100%)]" />
