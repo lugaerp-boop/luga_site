@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, TrendingUp } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { whatsappUrl } from "@/lib/whatsapp";
 import WaveDivider from "@/components/shared/WaveDivider";
 
@@ -102,20 +102,6 @@ export default function Hero() {
               </a>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Floating stat badge — sits directly on the photo, not boxed away from it */}
-      <div
-        className="hidden lg:flex absolute right-12 xl:right-24 bottom-16 items-center gap-3 bg-white rounded-xl shadow-xl px-4 py-3 animate-fade-in"
-        style={{ animationDelay: "300ms" }}
-      >
-        <div className="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
-          <TrendingUp size={18} className="text-emerald-500" />
-        </div>
-        <div>
-          <p className="text-[11px] text-luga-text-secondary leading-none mb-1">Receber hoje</p>
-          <p className="text-sm font-bold text-luga-dark leading-none">R$ 12.450</p>
         </div>
       </div>
 
