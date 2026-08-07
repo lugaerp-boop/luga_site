@@ -64,7 +64,7 @@ export default function Problem() {
         <AnimatedSection className="text-center mt-12">
           <p className="text-lg text-luga-dark font-semibold">
             A Luga foi feita pra acabar com isso —{" "}
-            <span className="text-luga-royal">e operar no mesmo dia.</span>
+            <span className="text-luga-royal">e trazer resultados reais.</span>
           </p>
         </AnimatedSection>
       </div>
