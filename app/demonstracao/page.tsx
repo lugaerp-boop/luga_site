@@ -87,7 +87,7 @@ const faqs: FAQ[] = [
   {
     question: "Como funciona a implantação?",
     answer:
-      "Em menos de 1 semana. Importamos seus dados via Excel (clientes, produtos, fornecedores), configuramos os parâmetros da sua empresa e fazemos o treinamento da equipe. Você começa a operar no mesmo dia.",
+      "Em menos de 1 semana. Importamos seus dados via Excel (clientes, produtos, fornecedores), configuramos os parâmetros da sua empresa e fazemos o treinamento da equipe.",
   },
 ];
 
