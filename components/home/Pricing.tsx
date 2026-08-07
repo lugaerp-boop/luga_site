@@ -22,7 +22,7 @@ const plans = [
       "Conciliação Bancária + Open Finance",
       "Duplicatas, Empréstimos e Mapa de Entregas",
       "Relatórios — 14 categorias, centenas de modelos",
-      "Usuários ilimitados · Multi-filial",
+      "Usuários ilimitados",
     ],
   },
   {
