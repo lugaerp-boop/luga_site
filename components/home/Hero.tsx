@@ -17,12 +17,29 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
 export default function Hero() {
   return (
     <section className="relative bg-luga-hero pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
-      {/* Photo — shown in full (no crop), left edge fading into the hero color so it flows toward the text/CTA */}
+      {/* Blurred full-bleed copy of the same photo, so the flat background actually shares its color/texture */}
+      <div className="absolute inset-0">
+        <Image
+          src="/Imagem-Hero.png"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover scale-125 blur-3xl"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(13,27,75,0.92)_0%,rgba(13,27,75,0.82)_35%,rgba(13,27,75,0.55)_65%,rgba(21,101,192,0.32)_100%)]" />
+      </div>
+
+      {/* Photo — shown in full (no crop), left edge fading into the blurred background so it flows toward the text/CTA */}
       <div
         className="hidden md:block absolute inset-y-0 right-0 w-[46%] lg:w-[42%] xl:w-[38%]"
         style={{
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%)",
-          maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+          WebkitMaskComposite: "source-in",
+          maskImage:
+            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+          maskComposite: "intersect",
         }}
       >
         <Image
