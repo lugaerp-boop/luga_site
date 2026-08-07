@@ -17,18 +17,22 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
 export default function Hero() {
   return (
     <section className="relative bg-luga-hero pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
-      {/* Full-bleed photo background */}
-      <div className="absolute inset-0">
+      {/* Photo — shown in full (no crop), left edge fading into the hero color so it flows toward the text/CTA */}
+      <div
+        className="hidden md:block absolute inset-y-0 right-0 w-[46%] lg:w-[42%] xl:w-[38%]"
+        style={{
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%)",
+          maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%)",
+        }}
+      >
         <Image
           src="/Imagem-Hero.png"
           alt="Gestor usando o Luga ERP em um notebook, com indicadores do sistema em destaque"
           fill
-          sizes="100vw"
+          sizes="(min-width: 768px) 46vw, 0px"
           priority
-          className="object-cover object-[65%_18%] lg:object-[72%_12%]"
+          className="object-contain object-bottom"
         />
-        {/* Brand-color gradient so the photo blends into the hero instead of sitting as a separate block */}
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(13,27,75,0.97)_0%,rgba(13,27,75,0.92)_28%,rgba(13,27,75,0.68)_50%,rgba(21,101,192,0.42)_72%,rgba(21,101,192,0.22)_100%)]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
