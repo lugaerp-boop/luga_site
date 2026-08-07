@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DemoModal from "@/components/funcionalidades/DemoModal";
 import {
@@ -22,6 +21,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Download,
+  MessageCircle,
+  QrCode,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -33,9 +34,21 @@ export const metadata: Metadata = {
 
 type Plan = "Ambos" | "Completo";
 
-type Visual =
-  | { type: "screenshot"; src: string; position: string }
-  | { type: "map" | "reports" | "fiscal" | "permissions" };
+type VisualType =
+  | "dashboard"
+  | "cadastros"
+  | "vendas"
+  | "compras"
+  | "estoque"
+  | "financeiro"
+  | "caixa"
+  | "fluxo"
+  | "boletos"
+  | "duplicatas"
+  | "map"
+  | "reports"
+  | "fiscal"
+  | "permissions";
 
 const modules: {
   icon: React.ElementType;
@@ -43,7 +56,7 @@ const modules: {
   plan: Plan;
   description: string;
   features: string[];
-  visual: Visual;
+  visual: VisualType;
 }[] = [
   {
     icon: LayoutDashboard,
@@ -56,7 +69,7 @@ const modules: {
       "Acesso rápido aos módulos mais usados",
       "Alertas de pendências e vencimentos",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel1.png", position: "center 15%" },
+    visual: "dashboard",
   },
   {
     icon: Users,
@@ -70,7 +83,7 @@ const modules: {
       "Detecção automática de duplicidades",
       "Importação via Excel com validação em tempo real",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel2.png", position: "center 12%" },
+    visual: "cadastros",
   },
   {
     icon: ShoppingCart,
@@ -84,7 +97,7 @@ const modules: {
       "Baixa em lote e natureza de operação",
       "Importação e exportação de tabelas via planilha",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel3.png", position: "62% 28%" },
+    visual: "vendas",
   },
   {
     icon: Truck,
@@ -98,7 +111,7 @@ const modules: {
       "Controle de frete, CTe e faltas na entrega",
       "Rateio de custo de frete entre entregas",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel3.png", position: "18% 62%" },
+    visual: "compras",
   },
   {
     icon: Boxes,
@@ -112,7 +125,7 @@ const modules: {
       "Registro de perdas e quebras",
       "Integração automática com compras e vendas",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel3.png", position: "90% 22%" },
+    visual: "estoque",
   },
   {
     icon: DollarSign,
@@ -126,7 +139,7 @@ const modules: {
       "Baixa individual ou em lote",
       "Histórico completo por cliente e fornecedor",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel4.png", position: "center 18%" },
+    visual: "financeiro",
   },
   {
     icon: Wallet,
@@ -140,7 +153,7 @@ const modules: {
       "Régua de cobrança automática via WhatsApp",
       "Envio para clientes com boleto vencido ou a vencer",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel4.png", position: "82% 42%" },
+    visual: "caixa",
   },
   {
     icon: TrendingUp,
@@ -154,7 +167,7 @@ const modules: {
       "Comparativo PMR x PMP",
       "Visão consolidada por período e por filial",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel1.png", position: "32% 68%" },
+    visual: "fluxo",
   },
   {
     icon: Landmark,
@@ -168,7 +181,7 @@ const modules: {
       "CNAB 240 e 400 (remessa e retorno)",
       "Conciliação bancária automática com Open Finance",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel4.png", position: "92% 10%" },
+    visual: "boletos",
   },
   {
     icon: Receipt,
@@ -182,7 +195,7 @@ const modules: {
       "Contratos de empréstimo e tabela de parcelas",
       "Controle de saldo devedor",
     ],
-    visual: { type: "screenshot", src: "/Imagem-Carrossel4.png", position: "90% 64%" },
+    visual: "duplicatas",
   },
   {
     icon: MapPin,
@@ -195,7 +208,7 @@ const modules: {
       "Entregas pendentes e realizadas no mapa",
       "Cobertura e organização de rotas",
     ],
-    visual: { type: "map" },
+    visual: "map",
   },
   {
     icon: BarChart3,
@@ -209,7 +222,7 @@ const modules: {
       "Modo configurável pelo usuário",
       "Exportação em PDF e Excel com um clique",
     ],
-    visual: { type: "reports" },
+    visual: "reports",
   },
   {
     icon: FileText,
@@ -225,7 +238,7 @@ const modules: {
       "Exportação contábil: AlterData, CSV, TXT e XML",
       "Cadastros fiscais: NCM, CFOP, CST e alíquotas",
     ],
-    visual: { type: "fiscal" },
+    visual: "fiscal",
   },
   {
     icon: Settings,
@@ -238,7 +251,7 @@ const modules: {
       "Granularidade de permissão por módulo",
       "Usuários ilimitados, sem cobrança por pessoa",
     ],
-    visual: { type: "permissions" },
+    visual: "permissions",
   },
 ];
 
@@ -383,7 +396,7 @@ function ModuleMockup({
   icon: React.ElementType;
   title: string;
   index: number;
-  visual: Visual;
+  visual: VisualType;
 }) {
   const color = CARD_COLORS[index % CARD_COLORS.length];
 
@@ -404,29 +417,299 @@ function ModuleMockup({
           </div>
         </div>
 
-        {visual.type === "screenshot" && (
-          <>
-            <div className="relative h-56 sm:h-64 rounded-xl overflow-hidden border border-gray-100 bg-luga-bg">
-              <Image
-                src={visual.src}
-                alt={`Tela de ${title} no Luga ERP`}
-                fill
-                sizes="(min-width: 1024px) 32rem, 90vw"
-                className="object-cover"
-                style={{ objectPosition: visual.position }}
-              />
-            </div>
-            <div className="mt-4 flex items-center justify-between">
-              <span className="text-xs text-luga-text-secondary">Tela real do sistema</span>
-              <span className="text-xs font-semibold text-luga-royal">Luga ERP</span>
-            </div>
-          </>
-        )}
+        {visual === "dashboard" && <DashboardMockup color={color} />}
+        {visual === "cadastros" && <CadastrosMockup color={color} />}
+        {visual === "vendas" && <VendasMockup color={color} />}
+        {visual === "compras" && <ComprasMockup color={color} />}
+        {visual === "estoque" && <EstoqueMockup color={color} />}
+        {visual === "financeiro" && <FinanceiroMockup />}
+        {visual === "caixa" && <CaixaMockup color={color} />}
+        {visual === "fluxo" && <FluxoMockup />}
+        {visual === "boletos" && <BoletosMockup color={color} />}
+        {visual === "duplicatas" && <DuplicatasMockup color={color} />}
+        {visual === "map" && <MapMockup color={color} />}
+        {visual === "reports" && <ReportsMockup color={color} />}
+        {visual === "fiscal" && <FiscalMockup color={color} />}
+        {visual === "permissions" && <PermissionsMockup color={color} />}
+      </div>
+    </div>
+  );
+}
 
-        {visual.type === "map" && <MapMockup color={color} />}
-        {visual.type === "reports" && <ReportsMockup color={color} />}
-        {visual.type === "fiscal" && <FiscalMockup color={color} />}
-        {visual.type === "permissions" && <PermissionsMockup color={color} />}
+function DashboardMockup({ color }: { color: string }) {
+  const stats = [
+    { label: "Saldo bancário", value: "R$ 42.180" },
+    { label: "A receber hoje", value: "R$ 6.240" },
+    { label: "A pagar hoje", value: "R$ 3.150" },
+    { label: "Previsão de sobra", value: "R$ 39.030" },
+  ];
+  return (
+    <div>
+      <div className="grid grid-cols-2 gap-3 mb-3">
+        {stats.map((s) => (
+          <div key={s.label} className="bg-luga-bg rounded-lg p-3 border border-gray-100">
+            <p className="text-[11px] text-luga-text-secondary mb-1">{s.label}</p>
+            <p className="text-sm font-bold text-luga-dark">{s.value}</p>
+          </div>
+        ))}
+      </div>
+      <div className="bg-luga-bg rounded-lg p-3 border border-gray-100">
+        <p className="text-[11px] text-luga-text-secondary mb-2">Fluxo de caixa — 7 dias</p>
+        <div className="flex items-end gap-1.5 h-16">
+          {[40, 70, 55, 90, 65, 80, 50].map((h, i) => (
+            <div key={i} className={`flex-1 rounded-sm bg-gradient-to-t ${color}`} style={{ height: `${h}%` }} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CadastrosMockup({ color }: { color: string }) {
+  const stats = [
+    { label: "Ativos", value: "909" },
+    { label: "Completude", value: "83%" },
+    { label: "Duplicidades", value: "20" },
+  ];
+  const cats = [
+    { label: "Clientes", count: 331 },
+    { label: "Fornecedores", count: 302 },
+    { label: "Produtos", count: 276 },
+    { label: "Motoristas", count: 48 },
+  ];
+  return (
+    <div>
+      <div className="grid grid-cols-3 gap-2 mb-4">
+        {stats.map((s) => (
+          <div key={s.label} className="bg-luga-bg rounded-lg p-2.5 border border-gray-100 text-center">
+            <p className="text-sm font-bold text-luga-dark">{s.value}</p>
+            <p className="text-[10px] text-luga-text-secondary">{s.label}</p>
+          </div>
+        ))}
+      </div>
+      <div className="space-y-2">
+        {cats.map((c) => (
+          <div key={c.label} className="flex items-center justify-between bg-luga-bg rounded-lg px-3 py-2 border border-gray-100">
+            <span className="text-sm text-luga-dark">{c.label}</span>
+            <span className={`text-xs font-bold text-white rounded-full px-2 py-0.5 bg-gradient-to-br ${color}`}>
+              {c.count}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function VendasMockup({ color }: { color: string }) {
+  const pedidos = [
+    { cliente: "Mercado Bom Preço", valor: "R$ 1.240", status: "Faturado" },
+    { cliente: "Distribuidora Verde", valor: "R$ 890", status: "Pendente" },
+    { cliente: "Mercado São João", valor: "R$ 2.100", status: "Faturado" },
+  ];
+  return (
+    <div className="space-y-2.5">
+      {pedidos.map((p) => (
+        <div key={p.cliente} className="flex items-center gap-3 bg-luga-bg rounded-lg px-3 py-2.5 border border-gray-100">
+          <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0`}>
+            <ShoppingCart size={14} className="text-white" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-luga-dark truncate">{p.cliente}</p>
+            <p className="text-xs text-luga-text-secondary">{p.valor}</p>
+          </div>
+          <span
+            className={`text-[10px] font-semibold rounded-full px-2 py-1 ${
+              p.status === "Faturado" ? "text-emerald-600 bg-emerald-50" : "text-amber-600 bg-amber-50"
+            }`}
+          >
+            {p.status}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ComprasMockup({ color }: { color: string }) {
+  const entradas = [
+    { fornecedor: "Hortifruti Central", valor: "R$ 3.480" },
+    { fornecedor: "Distribuidora Sul", valor: "R$ 1.920" },
+  ];
+  return (
+    <div className="space-y-2.5">
+      {entradas.map((e) => (
+        <div key={e.fornecedor} className="flex items-center gap-3 bg-luga-bg rounded-lg px-3 py-2.5 border border-gray-100">
+          <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0`}>
+            <Truck size={14} className="text-white" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-luga-dark truncate">{e.fornecedor}</p>
+            <p className="text-xs text-luga-text-secondary">Nota de entrada</p>
+          </div>
+          <span className="text-sm font-bold text-luga-dark">{e.valor}</span>
+        </div>
+      ))}
+      <div className="flex items-center justify-between bg-luga-bg rounded-lg px-3 py-2.5 border border-gray-100">
+        <span className="flex items-center gap-2 text-sm text-luga-dark">
+          <Truck size={14} className="text-luga-text-secondary" /> Frete CTe 4521
+        </span>
+        <span className="text-xs text-luga-text-secondary">Rateado</span>
+      </div>
+    </div>
+  );
+}
+
+function EstoqueMockup({ color }: { color: string }) {
+  const items = [
+    { nome: "Tomate", pct: 85 },
+    { nome: "Alface", pct: 45 },
+    { nome: "Cebola", pct: 70 },
+    { nome: "Batata", pct: 20 },
+  ];
+  return (
+    <div className="space-y-3.5">
+      {items.map((it) => (
+        <div key={it.nome}>
+          <div className="flex justify-between text-xs mb-1">
+            <span className="text-luga-dark font-medium">{it.nome}</span>
+            <span className="text-luga-text-secondary">{it.pct}%</span>
+          </div>
+          <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div className={`h-full rounded-full bg-gradient-to-r ${color}`} style={{ width: `${it.pct}%` }} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FinanceiroMockup() {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      <div>
+        <p className="text-xs font-semibold text-emerald-600 mb-2">A receber</p>
+        <div className="space-y-2">
+          {["R$ 1.240", "R$ 890"].map((v) => (
+            <div key={v} className="bg-emerald-50 rounded-lg px-2.5 py-2 text-xs text-luga-dark font-medium">
+              {v}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p className="text-xs font-semibold text-red-500 mb-2">A pagar</p>
+        <div className="space-y-2">
+          {["R$ 640", "R$ 2.100"].map((v) => (
+            <div key={v} className="bg-red-50 rounded-lg px-2.5 py-2 text-xs text-luga-dark font-medium">
+              {v}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CaixaMockup({ color }: { color: string }) {
+  return (
+    <div>
+      <div className="bg-luga-bg rounded-lg p-3 border border-gray-100 mb-3 flex items-center justify-between">
+        <span className="text-xs text-luga-text-secondary">Saldo em caixa</span>
+        <span className="text-sm font-bold text-luga-dark">R$ 1.850,00</span>
+      </div>
+      <div className="bg-[#DCF8C6] rounded-2xl rounded-tl-sm p-3 text-xs text-luga-dark max-w-[85%]">
+        Olá! Seu boleto de R$ 340,00 vence hoje. Evite juros, pague agora 🙂
+      </div>
+      <div className="flex items-center gap-1.5 mt-2 text-[11px] text-luga-text-secondary">
+        <MessageCircle size={12} className="text-emerald-500" /> Enviado via WhatsApp
+      </div>
+      <div className={`mt-3 h-1.5 rounded-full bg-gradient-to-r ${color}`} />
+    </div>
+  );
+}
+
+function FluxoMockup() {
+  const bars = [
+    { r: 40, p: 25 },
+    { r: 65, p: 45 },
+    { r: 35, p: 55 },
+    { r: 80, p: 30 },
+    { r: 55, p: 60 },
+    { r: 90, p: 40 },
+    { r: 45, p: 20 },
+  ];
+  return (
+    <div>
+      <div className="flex items-end gap-1.5 h-28 mb-3">
+        {bars.map((b, i) => (
+          <div key={i} className="flex-1 flex flex-col justify-end gap-0.5 h-full">
+            <div className="flex-1" />
+            <div className="rounded-sm bg-emerald-400" style={{ height: `${b.r}%` }} />
+            <div className="rounded-sm bg-red-300" style={{ height: `${b.p}%` }} />
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center gap-4 text-[11px] text-luga-text-secondary">
+        <span className="flex items-center gap-1">
+          <span className="w-2 h-2 rounded-full bg-emerald-400" /> Receber
+        </span>
+        <span className="flex items-center gap-1">
+          <span className="w-2 h-2 rounded-full bg-red-300" /> Pagar
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function BoletosMockup({ color }: { color: string }) {
+  return (
+    <div className="space-y-2.5">
+      <div className="flex items-center gap-3 bg-luga-bg rounded-lg px-3 py-2.5 border border-gray-100">
+        <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0`}>
+          <QrCode size={14} className="text-white" />
+        </div>
+        <div className="flex-1">
+          <p className="text-sm font-medium text-luga-dark">Pix recebido</p>
+          <p className="text-xs text-luga-text-secondary">Mercado Bom Preço</p>
+        </div>
+        <span className="text-sm font-bold text-emerald-600">+R$ 1.240</span>
+      </div>
+      {["Boleto 00234", "Boleto 00235"].map((b, i) => (
+        <div key={b} className="flex items-center justify-between bg-luga-bg rounded-lg px-3 py-2.5 border border-gray-100">
+          <span className="text-sm text-luga-dark">{b}</span>
+          <span
+            className={`text-[10px] font-semibold rounded-full px-2 py-1 ${
+              i === 0 ? "text-emerald-600 bg-emerald-50" : "text-amber-600 bg-amber-50"
+            }`}
+          >
+            {i === 0 ? "Conciliado" : "Pendente"}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function DuplicatasMockup({ color }: { color: string }) {
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between bg-luga-bg rounded-lg px-3 py-2.5 border border-gray-100">
+        <span className="text-sm text-luga-dark">Cheque 004521</span>
+        <span className="text-xs font-semibold text-luga-text-secondary">R$ 980,00</span>
+      </div>
+      <div className="flex items-center justify-between bg-luga-bg rounded-lg px-3 py-2.5 border border-gray-100">
+        <span className="text-sm text-luga-dark">Duplicata 1187</span>
+        <span className="text-xs font-semibold text-luga-text-secondary">R$ 1.520,00</span>
+      </div>
+      <div>
+        <div className="flex justify-between text-xs mb-1">
+          <span className="text-luga-dark font-medium">Empréstimo — parcela 8/24</span>
+          <span className="text-luga-text-secondary">33%</span>
+        </div>
+        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+          <div className={`h-full rounded-full bg-gradient-to-r ${color}`} style={{ width: "33%" }} />
+        </div>
       </div>
     </div>
   );
