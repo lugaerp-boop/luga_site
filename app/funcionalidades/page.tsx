@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import DemoModal from "@/components/funcionalidades/DemoModal";
 import {
   LayoutDashboard,
   Users,
@@ -235,11 +236,12 @@ export default function FuncionalidadesPage() {
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
               Tudo que você precisa para gerir sua empresa
             </h1>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto">
+            <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
               Módulos integrados, pensados para o dia a dia de distribuidoras e
               atacadistas. Planos Essencial e Completo — o Completo com módulo
               Fiscal e Contábil integrado.
             </p>
+            <DemoModal />
           </AnimatedSection>
         </div>
       </section>
