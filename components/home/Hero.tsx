@@ -26,7 +26,7 @@ export default function Hero() {
           fill
           sizes="100vw"
           priority
-          className="object-cover object-right"
+          className="object-cover object-[100%_8%]"
         />
         {/* Subtle scrim over the text zone only, so the graphic never visually collides with the headline at narrower crops */}
         <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(13,27,75,0.85)_0%,rgba(13,27,75,0.75)_30%,rgba(13,27,75,0.4)_50%,transparent_66%)]" />
