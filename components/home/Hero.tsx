@@ -17,16 +17,26 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
 export default function Hero() {
   return (
     <section className="relative bg-luga-dark pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
-      {/* Soft glow behind the subject for depth, same flat navy as the rest of the section */}
-      <div className="absolute -right-10 top-1/2 -translate-y-1/2 w-[38rem] h-[38rem] rounded-full bg-luga-royal/25 blur-[100px] pointer-events-none" />
-
-      {/* Cutout photo, background removed — sits directly on the section's own color, no box, no seam */}
-      <div className="hidden md:block absolute inset-y-0 right-0 w-[46%] lg:w-[42%] xl:w-[38%]">
+      {/* Blurred full-bleed copy fills any letterbox gap with matching texture, so there's never a visible seam */}
+      <div className="hidden md:block absolute inset-0">
         <Image
-          src="/Imagem-Hero-nobg.png"
+          src="/Imagem-Card.png"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover scale-110 blur-2xl opacity-80"
+        />
+      </div>
+
+      {/* Full hero background image — already composed with the subject on the right and clean space on the left for the text.
+          object-contain (not cover) so the designed safe-zone never gets cropped/shifted. */}
+      <div className="hidden md:block absolute inset-0">
+        <Image
+          src="/Imagem-Card.png"
           alt="Gestor usando o Luga ERP em um notebook, com indicadores do sistema em destaque"
           fill
-          sizes="(min-width: 768px) 46vw, 0px"
+          sizes="100vw"
           priority
           className="object-contain object-bottom"
         />
