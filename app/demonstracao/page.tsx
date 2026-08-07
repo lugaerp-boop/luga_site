@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, AlertTriangle, PackageX, Receipt, MessageCircle, BarChart2, RefreshCw } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
-import WaveDivider from "@/components/shared/WaveDivider";
 import LeadForm from "@/components/landing/LeadForm";
 import FAQSection, { type FAQ } from "@/components/landing/FAQSection";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
@@ -137,8 +136,6 @@ export default function DemonstracaoPage() {
             ))}
           </div>
         </div>
-
-        <WaveDivider />
       </section>
 
       {/* Pain points */}

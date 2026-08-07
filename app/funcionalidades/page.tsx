@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
-import WaveDivider from "@/components/shared/WaveDivider";
 import {
   LayoutDashboard,
   Users,
@@ -245,8 +244,6 @@ export default function FuncionalidadesPage() {
             </p>
           </AnimatedSection>
         </div>
-
-        <WaveDivider />
       </section>
 
       {/* Modules — alternating layout */}

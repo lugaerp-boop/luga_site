@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
-import WaveDivider from "@/components/shared/WaveDivider";
 
 interface LandingHeroProps {
   badge?: string;
@@ -71,8 +70,6 @@ export default function LandingHero({
           </div>
         )}
       </div>
-
-      <WaveDivider />
     </section>
   );
 }
