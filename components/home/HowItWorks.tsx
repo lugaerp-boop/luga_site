@@ -5,9 +5,9 @@ const steps = [
   {
     icon: Building2,
     number: "01",
-    title: "Cadastre sua empresa em minutos",
+    title: "Cadastre sua empresa",
     description:
-      "Configure os dados, usuários e parâmetros. Sem servidor, sem instalação — só o navegador.",
+      "Configure os dados, usuários e parâmetros iniciais. Sem servidor, sem instalação — só o navegador.",
   },
   {
     icon: FileSpreadsheet,
@@ -19,9 +19,9 @@ const steps = [
   {
     icon: Rocket,
     number: "03",
-    title: "Comece a operar no mesmo dia",
+    title: "Sua operação no ar em até 1 semana",
     description:
-      "Emita NF-e, controle o financeiro e gere relatórios. Treinamento feito junto com a nossa equipe.",
+      "Nossa equipe configura o sistema com você e treina sua equipe. Ao final da implantação, é só emitir NF-e, controlar o financeiro e gerar relatórios.",
   },
 ];
 
@@ -35,7 +35,7 @@ export default function HowItWorks() {
           </p>
           <h2 className="section-title">Três passos para parar de improvisar</h2>
           <p className="section-subtitle mt-4 max-w-xl mx-auto">
-            Sem migração complicada. Sem meses de treinamento. Você opera no mesmo dia.
+            Sem migração complicada. Com treinamento incluso. Sua operação no ar em até 1 semana.
           </p>
         </AnimatedSection>
 
@@ -45,8 +45,8 @@ export default function HowItWorks() {
 
           <div className="grid lg:grid-cols-3 gap-8">
             {steps.map((step, i) => (
-              <AnimatedSection key={step.title} delay={i * 150}>
-                <div className="relative bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center card-hover">
+              <AnimatedSection key={step.title} delay={i * 150} className="h-full">
+                <div className="relative h-full flex flex-col bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center card-hover">
                   {/* Number badge */}
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                     <div className="w-8 h-8 rounded-full bg-luga-gradient flex items-center justify-center">
