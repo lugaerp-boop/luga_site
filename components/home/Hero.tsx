@@ -17,20 +17,8 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
 export default function Hero() {
   return (
     <section className="relative bg-luga-dark pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
-      {/* Blurred full-bleed copy fills any letterbox gap with matching texture, so there's never a visible seam */}
-      <div className="hidden md:block absolute inset-0">
-        <Image
-          src="/Imagem-Card.png"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          className="object-cover scale-110 blur-2xl opacity-80"
-        />
-      </div>
-
       {/* Full hero background image — already composed with the subject on the right and clean space on the left for the text.
-          object-contain (not cover) so the designed safe-zone never gets cropped/shifted. */}
+          object-cover fills the whole section with a single crop of the same photo, so there's never a seam to patch. */}
       <div className="hidden md:block absolute inset-0">
         <Image
           src="/Imagem-Card.png"
@@ -38,8 +26,10 @@ export default function Hero() {
           fill
           sizes="100vw"
           priority
-          className="object-contain object-bottom"
+          className="object-cover object-right"
         />
+        {/* Subtle scrim over the text zone only, so the graphic never visually collides with the headline at narrower crops */}
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(13,27,75,0.85)_0%,rgba(13,27,75,0.75)_30%,rgba(13,27,75,0.4)_50%,transparent_66%)]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
