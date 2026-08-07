@@ -55,8 +55,7 @@ export default function Hero() {
             {/* Subtitle */}
             <p className="text-lg text-white/80 leading-relaxed mb-6 max-w-xl">
               Nascido no dia a dia do mercado: controle pedidos, estoque,
-              financeiro, NF-e e boletos em um só sistema —{" "}
-              <span className="text-white font-semibold">no ar em menos de 1 semana.</span>
+              financeiro, NF-e e boletos em um só sistema.
             </p>
 
             {/* Trust strip */}
