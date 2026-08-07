@@ -17,33 +17,13 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
 export default function Hero() {
   return (
     <section className="relative bg-luga-dark pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
-      {/* Blurred full-bleed copy of the same photo, tinted a single flat navy so the whole section reads as one color */}
-      <div className="absolute inset-0">
-        <Image
-          src="/Imagem-Hero.png"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          className="object-cover scale-125 blur-3xl"
-        />
-        <div className="absolute inset-0 bg-luga-dark/80" />
-      </div>
+      {/* Soft glow behind the subject for depth, same flat navy as the rest of the section */}
+      <div className="absolute -right-10 top-1/2 -translate-y-1/2 w-[38rem] h-[38rem] rounded-full bg-luga-royal/25 blur-[100px] pointer-events-none" />
 
-      {/* Photo — shown in full (no crop), left edge fading into the blurred background so it flows toward the text/CTA */}
-      <div
-        className="hidden md:block absolute inset-y-0 right-0 w-[46%] lg:w-[42%] xl:w-[38%]"
-        style={{
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
-          WebkitMaskComposite: "source-in",
-          maskImage:
-            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 18%, black 42%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
-          maskComposite: "intersect",
-        }}
-      >
+      {/* Cutout photo, background removed — sits directly on the section's own color, no box, no seam */}
+      <div className="hidden md:block absolute inset-y-0 right-0 w-[46%] lg:w-[42%] xl:w-[38%]">
         <Image
-          src="/Imagem-Hero.png"
+          src="/Imagem-Hero-nobg.png"
           alt="Gestor usando o Luga ERP em um notebook, com indicadores do sistema em destaque"
           fill
           sizes="(min-width: 768px) 46vw, 0px"
