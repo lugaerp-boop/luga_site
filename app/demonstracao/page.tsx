@@ -129,7 +129,7 @@ export default function DemonstracaoPage() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            {["Sem compromisso", "100% web — sem instalação", "Atendimento em até 1 dia útil"].map((item) => (
+            {["Sem compromisso", "100% web — sem instalação", "Atendimento em poucos minutos"].map((item) => (
               <span key={item} className="text-sm text-white/70">
                 ✓ {item}
               </span>
