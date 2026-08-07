@@ -16,15 +16,23 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
 
 export default function Hero() {
   return (
-    <section className="relative bg-luga-hero pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-luga-royal/20 blur-3xl" />
-        <div className="absolute bottom-0 -left-20 w-72 h-72 rounded-full bg-luga-light/10 blur-3xl" />
+    <section className="relative bg-luga-hero pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
+      {/* Full-bleed photo background */}
+      <div className="absolute inset-0">
+        <Image
+          src="/Imagem-Hero.png"
+          alt="Gestor usando o Luga ERP em um notebook, com indicadores do sistema em destaque"
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover object-[65%_center] lg:object-[72%_center]"
+        />
+        {/* Brand-color gradient so the photo blends into the hero instead of sitting as a separate block */}
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(13,27,75,0.97)_0%,rgba(13,27,75,0.92)_28%,rgba(13,27,75,0.68)_50%,rgba(21,101,192,0.42)_72%,rgba(21,101,192,0.22)_100%)]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-xl lg:max-w-2xl">
           {/* Text side */}
           <div className="animate-fade-in">
             {/* Badge */}
@@ -93,33 +101,20 @@ export default function Hero() {
               </a>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Photo side */}
-          <div className="hidden lg:flex items-center justify-center animate-fade-in" style={{ animationDelay: "200ms" }}>
-            <div className="relative w-full max-w-md">
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
-                <Image
-                  src="/Imagem-Hero.png"
-                  alt="Gestor usando o Luga ERP em um notebook, com indicadores do sistema em destaque"
-                  fill
-                  sizes="(min-width: 1024px) 28rem, 0px"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-
-              {/* Floating stat badge */}
-              <div className="absolute -bottom-5 -left-6 flex items-center gap-3 bg-white rounded-xl shadow-xl px-4 py-3">
-                <div className="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp size={18} className="text-emerald-500" />
-                </div>
-                <div>
-                  <p className="text-[11px] text-luga-text-secondary leading-none mb-1">Receber hoje</p>
-                  <p className="text-sm font-bold text-luga-dark leading-none">R$ 12.450</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* Floating stat badge — sits directly on the photo, not boxed away from it */}
+      <div
+        className="hidden lg:flex absolute right-12 xl:right-24 bottom-16 items-center gap-3 bg-white rounded-xl shadow-xl px-4 py-3 animate-fade-in"
+        style={{ animationDelay: "300ms" }}
+      >
+        <div className="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+          <TrendingUp size={18} className="text-emerald-500" />
+        </div>
+        <div>
+          <p className="text-[11px] text-luga-text-secondary leading-none mb-1">Receber hoje</p>
+          <p className="text-sm font-bold text-luga-dark leading-none">R$ 12.450</p>
         </div>
       </div>
 
