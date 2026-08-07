@@ -208,14 +208,13 @@ const modules: {
   },
   {
     icon: Settings,
-    title: "Permissões, Usuários e Multi-filial",
+    title: "Permissões e Usuários",
     plan: "Ambos",
     description:
-      "Controle por papel — operador, financeiro, vendedor, comprador — com granularidade por módulo, e gestão de múltiplas filiais no mesmo sistema.",
+      "Controle por papel — operador, financeiro, vendedor, comprador — com granularidade por módulo.",
     features: [
       "Controle de acesso por papel (perfil de usuário)",
       "Granularidade de permissão por módulo",
-      "Multi-filial e multi-usuário",
       "Usuários ilimitados, sem cobrança por pessoa",
     ],
   },
