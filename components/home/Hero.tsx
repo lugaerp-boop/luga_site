@@ -17,18 +17,21 @@ export default function Hero() {
   return (
     <section className="relative bg-luga-dark pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
       {/* Full hero background image — already composed with the subject on the right and clean space on the left for the text.
-          object-cover fills the whole section with a single crop of the same photo, so there's never a seam to patch. */}
-      <div className="hidden md:block absolute inset-0">
+          object-cover fills the whole section with a single crop of the same photo, so there's never a seam to patch.
+          On mobile the crop re-anchors toward the face (the layout stacks into one column, so there's no separate "text zone"). */}
+      <div className="absolute inset-0">
         <Image
           src="/Imagem-Card.png"
           alt="Gestor usando o Luga ERP em um notebook, com indicadores do sistema em destaque"
           fill
           sizes="100vw"
           priority
-          className="object-cover object-[100%_8%]"
+          className="object-cover object-[80%_10%] md:object-[100%_8%]"
         />
-        {/* Subtle scrim over the text zone only, so the graphic never visually collides with the headline at narrower crops */}
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(13,27,75,0.85)_0%,rgba(13,27,75,0.75)_30%,rgba(13,27,75,0.4)_50%,transparent_66%)]" />
+        {/* Mobile: uniform dark tint, since text stacks over the full width of the photo */}
+        <div className="absolute inset-0 bg-luga-dark/70 md:hidden" />
+        {/* Desktop: left-to-right fade so the photo stays vivid on the right, dark only behind the text */}
+        <div className="hidden md:block absolute inset-0 bg-[linear-gradient(100deg,rgba(13,27,75,0.85)_0%,rgba(13,27,75,0.75)_30%,rgba(13,27,75,0.4)_50%,transparent_66%)]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
