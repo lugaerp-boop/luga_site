@@ -69,7 +69,7 @@ export default function DemoModal() {
                   alt="Tela do sistema Luga ERP"
                   fill
                   sizes="(min-width: 768px) 48rem, 100vw"
-                  className={`object-cover blur-md scale-105 transition-opacity duration-1000 ${
+                  className={`object-contain blur-[3px] transition-opacity duration-1000 ${
                     i === active ? "opacity-100" : "opacity-0"
                   }`}
                 />
