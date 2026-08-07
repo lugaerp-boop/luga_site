@@ -6,7 +6,7 @@ import { Mail, Clock, Monitor, Headphones, Handshake } from "lucide-react";
 export const metadata: Metadata = {
   title: "Contato — Agende sua demonstração da Luga ERP",
   description:
-    "Agende uma demonstração da Luga ERP. Mostramos o sistema funcionando com os dados da sua empresa, sem compromisso. Respondemos em até 1 dia útil.",
+    "Agende uma demonstração da Luga ERP. Mostramos o sistema funcionando com os dados da sua empresa, sem compromisso. Atendimento em poucos minutos.",
   alternates: { canonical: "https://lugaerp.com.br/contato" },
 };
 
@@ -43,7 +43,7 @@ export default function ContatoPage() {
             </h1>
             <p className="text-lg text-white/80 leading-relaxed">
               Mostramos o sistema funcionando com os dados reais da sua empresa —
-              sem compromisso. Respondemos em até 1 dia útil.
+              sem compromisso. Atendimento em poucos minutos.
             </p>
           </AnimatedSection>
         </div>
