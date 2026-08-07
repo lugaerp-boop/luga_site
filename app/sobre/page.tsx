@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
-import { Target, Eye, Heart, MapPin, ArrowRight, Mail } from "lucide-react";
+import { Target, Eye, Heart, ArrowRight, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Sobre — Luga ERP, feito para quem distribui alimentos",
@@ -156,7 +156,6 @@ export default function SobrePage() {
                   { label: "CEASAs no Brasil", value: "70+" },
                   { label: "Volume anual movimentado", value: "R$ bilhões" },
                   { label: "Empresas sem ERP especializado", value: "> 90%" },
-                  { label: "Foco inicial da Luga", value: "CEASA São Gonçalo, RJ" },
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -168,49 +167,6 @@ export default function SobrePage() {
                 ))}
               </div>
             </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* Cobertura */}
-      <section className="bg-luga-bg py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-10">
-            <h2 className="section-title">Nossa cobertura</h2>
-            <p className="section-subtitle mt-3 max-w-xl mx-auto">
-              Atuamos hoje no CEASA São Gonçalo e região de Niterói/RJ, com expansão
-              planejada para demais CEASAs do estado.
-            </p>
-          </AnimatedSection>
-
-          <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            {[
-              {
-                icon: MapPin,
-                label: "CEASA São Gonçalo",
-                detail: "Mercado inicial — permissionários ativos",
-              },
-              {
-                icon: MapPin,
-                label: "Região Niterói / RJ",
-                detail: "Distribuidoras independentes",
-              },
-              {
-                icon: MapPin,
-                label: "Estado do Rio de Janeiro",
-                detail: "Expansão planejada para 2025–2026",
-              },
-            ].map((loc, i) => (
-              <AnimatedSection key={loc.label} delay={i * 100}>
-                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm text-center card-hover">
-                  <div className="gradient-icon mx-auto mb-3">
-                    <loc.icon size={20} />
-                  </div>
-                  <p className="font-bold text-luga-dark text-sm">{loc.label}</p>
-                  <p className="text-xs text-luga-text-secondary mt-1">{loc.detail}</p>
-                </div>
-              </AnimatedSection>
-            ))}
           </div>
         </div>
       </section>
