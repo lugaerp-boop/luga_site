@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, CheckCircle2, TrendingUp } from "lucide-react";
 import { whatsappUrl } from "@/lib/whatsapp";
 import WaveDivider from "@/components/shared/WaveDivider";
 
@@ -93,77 +94,36 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Dashboard mockup side */}
+          {/* Photo side */}
           <div className="hidden lg:flex items-center justify-center animate-fade-in" style={{ animationDelay: "200ms" }}>
-            <DashboardMockup />
+            <div className="relative w-full max-w-md">
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                <Image
+                  src="/Imagem-Hero.png"
+                  alt="Gestor usando o Luga ERP em um notebook, com indicadores do sistema em destaque"
+                  fill
+                  sizes="(min-width: 1024px) 28rem, 0px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+
+              {/* Floating stat badge */}
+              <div className="absolute -bottom-5 -left-6 flex items-center gap-3 bg-white rounded-xl shadow-xl px-4 py-3">
+                <div className="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <TrendingUp size={18} className="text-emerald-500" />
+                </div>
+                <div>
+                  <p className="text-[11px] text-luga-text-secondary leading-none mb-1">Receber hoje</p>
+                  <p className="text-sm font-bold text-luga-dark leading-none">R$ 12.450</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <WaveDivider />
     </section>
-  );
-}
-
-function DashboardMockup() {
-  return (
-    <div className="w-full max-w-lg bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 shadow-2xl">
-      {/* Top bar */}
-      <div className="flex items-center gap-2 mb-5">
-        <div className="w-3 h-3 rounded-full bg-red-400/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
-        <div className="w-3 h-3 rounded-full bg-green-400/80" />
-        <div className="flex-1 bg-white/10 rounded h-5 ml-3" />
-      </div>
-
-      {/* Stats row */}
-      <div className="grid grid-cols-3 gap-3 mb-4">
-        {[
-          { label: "Receber hoje", value: "R$ 12.450", color: "text-emerald-300" },
-          { label: "Pagar hoje", value: "R$ 4.200", color: "text-red-300" },
-          { label: "Saldo", value: "R$ 8.250", color: "text-white" },
-        ].map((s) => (
-          <div key={s.label} className="bg-white/10 rounded-xl p-3">
-            <p className="text-[10px] text-white/60 mb-1">{s.label}</p>
-            <p className={`text-sm font-bold ${s.color}`}>{s.value}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Chart placeholder */}
-      <div className="bg-white/10 rounded-xl p-4 mb-4">
-        <p className="text-[10px] text-white/60 mb-3">Fluxo de Caixa</p>
-        <div className="flex items-end gap-1 h-16">
-          {[40, 70, 55, 90, 65, 80, 50, 75, 95, 60, 85, 45].map((h, i) => (
-            <div
-              key={i}
-              className="flex-1 bg-luga-gradient rounded-sm opacity-70"
-              style={{ height: `${h}%` }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Recent items */}
-      <div className="space-y-2">
-        <p className="text-[10px] text-white/60 mb-2">Últimas NF-e emitidas</p>
-        {[
-          { nf: "NF-e 001.847", cliente: "Supermercado Bom Preço", valor: "R$ 1.240,00" },
-          { nf: "NF-e 001.846", cliente: "Distribuidora Verde", valor: "R$ 890,00" },
-          { nf: "NF-e 001.845", cliente: "Mercado São João", valor: "R$ 2.100,00" },
-        ].map((item) => (
-          <div
-            key={item.nf}
-            className="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2"
-          >
-            <div>
-              <p className="text-[10px] font-semibold text-white">{item.nf}</p>
-              <p className="text-[9px] text-white/50">{item.cliente}</p>
-            </div>
-            <span className="text-[10px] font-semibold text-emerald-300">{item.valor}</span>
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }
