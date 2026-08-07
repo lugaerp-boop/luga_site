@@ -46,7 +46,6 @@ const modules: {
       "Indicadores financeiros e operacionais em tempo real",
       "Acesso rápido aos módulos mais usados",
       "Alertas de pendências e vencimentos",
-      "Visão consolidada entre filiais",
     ],
   },
   {
@@ -230,7 +229,7 @@ export default function FuncionalidadesPage() {
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
               <span className="w-2 h-2 rounded-full bg-luga-accent" />
               <span className="text-sm font-medium text-white">
-                +14 módulos financeiros · multi-filial
+                +14 módulos financeiros
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
