@@ -2,6 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, ArrowRight } from "lucide-react";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { INSTAGRAM_URL } from "@/lib/instagram";
+
+function InstagramIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  );
+}
 
 function WhatsAppIcon({ size = 14 }: { size?: number }) {
   return (
@@ -137,6 +148,17 @@ export default function Footer() {
                   <Mail size={14} />
                 </div>
                 lugaerp@gmail.com
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-sm text-luga-text-tertiary hover:text-white transition-colors group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E1306C] transition-colors">
+                  <InstagramIcon />
+                </div>
+                @luga_erp
               </a>
             </div>
 
