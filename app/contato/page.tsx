@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import WhatsAppForm from "@/components/contact/WhatsAppForm";
+import { whatsappUrl } from "@/lib/whatsapp";
 import { Mail, Clock, Monitor, Headphones, Handshake } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -62,7 +63,7 @@ export default function ContatoPage() {
 
                 <div className="space-y-4 mb-8">
                   <a
-                    href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5521XXXXXXXXX"}`}
+                    href={whatsappUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:border-[#25D366] transition-colors group"
@@ -76,7 +77,7 @@ export default function ContatoPage() {
                       <p className="text-xs text-luga-text-secondary uppercase tracking-wide font-medium">
                         WhatsApp
                       </p>
-                      <p className="font-semibold text-luga-dark">(21) XXXXX-XXXX</p>
+                      <p className="font-semibold text-luga-dark">(21) 99645-2396</p>
                     </div>
                   </a>
 

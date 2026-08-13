@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { WHATSAPP_NUMBER } from "@/lib/whatsapp";
 
 const segments = [
   "Permissionário CEASA",
@@ -44,8 +45,7 @@ export default function WhatsAppForm() {
       .filter(Boolean)
       .join("\n");
 
-    const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5521XXXXXXXXX";
-    const url = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
     window.open(url, "_blank", "noopener,noreferrer");
     setOpened(true);
