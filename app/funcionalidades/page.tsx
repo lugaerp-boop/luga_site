@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DemoModal from "@/components/funcionalidades/DemoModal";
@@ -25,12 +25,11 @@ import {
   QrCode,
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Funcionalidades — Módulos do Luga ERP",
-  description:
-    "Conheça os módulos do Luga ERP: cadastros, vendas, compras, estoque, financeiro, cobrança, boletos, fiscal e 14 categorias de relatórios. Feito para distribuidoras e atacadistas de hortifrutigranjeiros.",
-  alternates: { canonical: "https://lugaerp.com.br/funcionalidades" },
-};
+export const metadata = pageMetadata(
+  "Funcionalidades — Módulos do Luga ERP",
+  "Conheça os módulos do Luga ERP: cadastros, vendas, compras, estoque, financeiro, cobrança, boletos, fiscal e 14 categorias de relatórios. Feito para distribuidoras e atacadistas de hortifrutigranjeiros.",
+  "/funcionalidades"
+);
 
 type Plan = "Ambos" | "Completo";
 

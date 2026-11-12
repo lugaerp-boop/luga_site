@@ -10,16 +10,13 @@ function WhatsAppIcon({ size = 26 }: { size?: number }) {
 
 export default function FloatingWhatsApp() {
   return (
-    <a
-      href={whatsappUrl()}
-      target="_blank"
-      rel="noopener noreferrer"
-      data-event="click_whatsapp_float"
-      aria-label="Falar no WhatsApp"
-      className="group fixed bottom-5 right-5 z-30 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:bg-[#1ebe5b] hover:scale-105 active:scale-95 transition-all duration-200"
-    >
-      <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-40 group-hover:opacity-0" />
-      <WhatsAppIcon />
-    </a>
+    <aside aria-label="Contato rápido" className="fixed bottom-0 inset-x-0 z-30 border-t border-gray-200 bg-white px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] md:inset-x-auto md:bottom-5 md:right-5 md:border-0 md:bg-transparent md:p-0">
+      <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" data-event="click_whatsapp_float"
+        aria-label="Conversar no WhatsApp"
+        className="flex items-center justify-center gap-2 rounded-lg bg-[#16883f] px-4 h-12 text-white shadow-lg hover:bg-[#126e33] transition-colors md:rounded-full md:w-14 md:h-14 md:px-0">
+        <WhatsAppIcon />
+        <span className="text-sm font-semibold md:sr-only">Conversar no WhatsApp</span>
+      </a>
+    </aside>
   );
 }

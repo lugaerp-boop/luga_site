@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { Target, Eye, Heart, ArrowRight, Mail } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Sobre — Luga ERP, feito para quem distribui alimentos",
-  description:
-    "Conheça a história da Luga ERP e por que desenvolvemos um sistema especializado para distribuidoras e atacadistas de hortifrutigranjeiros no Rio de Janeiro.",
-  alternates: { canonical: "https://lugaerp.com.br/sobre" },
-};
+export const metadata = pageMetadata(
+  "Sobre — Luga ERP, feito para quem distribui alimentos",
+  "Conheça a história da Luga ERP e por que desenvolvemos um sistema especializado para distribuidoras e atacadistas de hortifrutigranjeiros no Rio de Janeiro.",
+  "/sobre"
+);
 
 const mvv = [
   {

@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { EMAILJS_CONFIG } from "@/lib/emailjs";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { attributionFields } from "@/lib/attribution";
+import { validateContactForm, clearFieldError, markInvalidField, formText } from "@/lib/form-validation";
 
 // TODO: Quando houver backend disponível, substituir EmailJS por Server Action
 // que persista os leads em banco de dados com rastreamento completo de UTM.
@@ -38,42 +40,30 @@ export default function LeadForm({ defaultSegment }: LeadFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, setState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const [utms, setUtms] = useState({
-    utm_source: "",
-    utm_medium: "",
-    utm_campaign: "",
-    utm_content: "",
-    utm_term: "",
-  });
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setUtms({
-      utm_source: params.get("utm_source") ?? "",
-      utm_medium: params.get("utm_medium") ?? "",
-      utm_campaign: params.get("utm_campaign") ?? "",
-      utm_content: params.get("utm_content") ?? "",
-      utm_term: params.get("utm_term") ?? "",
-    });
-  }, []);
+  const submitting = useRef(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting.current || !validateContactForm(e.currentTarget)) return;
+    submitting.current = true;
     setState("loading");
     setErrorMsg("");
 
     const formData = new FormData(e.currentTarget);
     const data = {
-      from_name: formData.get("from_name") as string,
-      company: formData.get("company") as string,
-      phone: formData.get("phone") as string,
-      segment: formData.get("segment") as string,
-      main_pain: formData.get("main_pain") as string,
-      current_system: formData.get("current_system") as string,
-      ...utms,
+      from_name: formText(formData, "from_name"),
+      company: formText(formData, "company"),
+      phone: formText(formData, "phone"),
+      segment: formText(formData, "segment"),
+      main_pain: formText(formData, "main_pain"),
+      current_system: formText(formData, "current_system"),
+      ...attributionFields(),
     };
 
     try {
+      if (!EMAILJS_CONFIG.serviceId || !EMAILJS_CONFIG.templateId || !EMAILJS_CONFIG.publicKey) {
+        throw new Error("Contact integration is not configured");
+      }
       const emailjs = await import("@emailjs/browser");
       await emailjs.send(
         EMAILJS_CONFIG.serviceId,
@@ -88,12 +78,14 @@ export default function LeadForm({ defaultSegment }: LeadFormProps) {
       setErrorMsg(
         "Não foi possível enviar. Tente novamente ou fale pelo WhatsApp."
       );
+    } finally {
+      submitting.current = false;
     }
   }
 
   if (state === "success") {
     return (
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-10 text-center">
+      <div role="status" className="bg-white rounded-2xl border border-gray-200 shadow-sm p-10 text-center">
         <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 size={32} className="text-emerald-500" />
         </div>
@@ -122,15 +114,10 @@ export default function LeadForm({ defaultSegment }: LeadFormProps) {
       ref={formRef}
       onSubmit={handleSubmit}
       className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 space-y-5"
-      noValidate
+      onInput={clearFieldError}
+      onInvalidCapture={markInvalidField}
+      aria-busy={state === "loading"}
     >
-      {/* Campos ocultos para rastreamento UTM */}
-      <input type="hidden" name="utm_source" value={utms.utm_source} />
-      <input type="hidden" name="utm_medium" value={utms.utm_medium} />
-      <input type="hidden" name="utm_campaign" value={utms.utm_campaign} />
-      <input type="hidden" name="utm_content" value={utms.utm_content} />
-      <input type="hidden" name="utm_term" value={utms.utm_term} />
-
       <div>
         <label
           htmlFor="lead_name"
@@ -140,7 +127,7 @@ export default function LeadForm({ defaultSegment }: LeadFormProps) {
         </label>
         <input
           id="lead_name"
-          name="from_name"
+          name="from_name" autoComplete="name" maxLength={120}
           type="text"
           required
           placeholder="Seu nome"
@@ -157,7 +144,7 @@ export default function LeadForm({ defaultSegment }: LeadFormProps) {
         </label>
         <input
           id="lead_company"
-          name="company"
+          name="company" autoComplete="organization" maxLength={160}
           type="text"
           required
           placeholder="Nome da empresa"
@@ -174,7 +161,7 @@ export default function LeadForm({ defaultSegment }: LeadFormProps) {
         </label>
         <input
           id="lead_phone"
-          name="phone"
+          name="phone" autoComplete="tel" inputMode="tel" maxLength={24}
           type="tel"
           required
           placeholder="(21) 9 9999-9999"
@@ -204,6 +191,9 @@ export default function LeadForm({ defaultSegment }: LeadFormProps) {
         </select>
       </div>
 
+      <details className="rounded-lg border border-gray-200 p-4">
+        <summary className="cursor-pointer text-sm font-semibold text-luga-royal">Conte um pouco mais (opcional)</summary>
+        <div className="mt-4 space-y-5">
       <div>
         <label
           htmlFor="lead_pain"
@@ -234,17 +224,20 @@ export default function LeadForm({ defaultSegment }: LeadFormProps) {
         </label>
         <input
           id="lead_current"
-          name="current_system"
+          name="current_system" maxLength={160}
           type="text"
           placeholder="Ex: planilha, caderno, outro sistema..."
           className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-luga-accent focus:border-transparent transition-all"
         />
       </div>
 
+        </div>
+      </details>
+
       {state === "error" && (
-        <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
+        <div role="alert" className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
           <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
-          {errorMsg}
+          <div>{errorMsg}{" "}<a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="font-semibold underline">Falar no WhatsApp</a></div>
         </div>
       )}
 
@@ -262,7 +255,7 @@ export default function LeadForm({ defaultSegment }: LeadFormProps) {
         ) : (
           <>
             <Send size={16} />
-            Agendar demonstração gratuita
+            Solicitar demonstração gratuita
           </>
         )}
       </button>

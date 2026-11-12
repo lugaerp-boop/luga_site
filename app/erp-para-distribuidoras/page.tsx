@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import {
   DollarSign,
   BarChart3,
@@ -24,17 +24,11 @@ import LeadForm from "@/components/landing/LeadForm";
 import FAQSection, { type FAQ } from "@/components/landing/FAQSection";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
-export const metadata: Metadata = {
-  title: "ERP para Distribuidoras | Luga ERP",
-  description:
-    "Sistema de gestão para distribuidoras controlarem pedidos, estoque, financeiro, cobranças, NF-e, boletos e relatórios em um só lugar.",
-  alternates: { canonical: "https://lugaerp.com.br/erp-para-distribuidoras" },
-  openGraph: {
-    title: "ERP para Distribuidoras | Luga ERP",
-    description:
-      "Sistema de gestão para distribuidoras controlarem pedidos, estoque, financeiro, cobranças, NF-e, boletos e relatórios em um só lugar.",
-  },
-};
+export const metadata = pageMetadata(
+  "ERP para Distribuidoras",
+  "Sistema de gestão para distribuidoras controlarem pedidos, estoque, financeiro, cobranças, NF-e, boletos e relatórios em um só lugar.",
+  "/erp-para-distribuidoras"
+);
 
 const pains: PainPoint[] = [
   {

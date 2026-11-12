@@ -1,17 +1,15 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, CheckCircle2, AlertTriangle, PackageX, Receipt, MessageCircle, BarChart2, RefreshCw } from "lucide-react";
+import { pageMetadata } from "@/lib/metadata";
+import { CheckCircle2, AlertTriangle, PackageX, Receipt, MessageCircle, BarChart2, RefreshCw } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import LeadForm from "@/components/landing/LeadForm";
 import FAQSection, { type FAQ } from "@/components/landing/FAQSection";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
-export const metadata: Metadata = {
-  title: "Agendar Demonstração Gratuita — Luga ERP",
-  description:
-    "Veja como controlar pedidos, estoque, financeiro, NF-e e cobrança em um só sistema. Demonstração gratuita do Luga ERP para distribuidoras, hortifruti, CEASA e atacadistas.",
-  alternates: { canonical: "https://lugaerp.com.br/demonstracao" },
-};
+export const metadata = pageMetadata(
+  "Agendar Demonstração Gratuita",
+  "Veja como controlar pedidos, estoque, financeiro, NF-e e cobrança em um só sistema. Demonstração gratuita do Luga ERP para distribuidoras, hortifruti, CEASA e atacadistas.",
+  "/demonstracao"
+);
 
 const pains = [
   {
@@ -94,46 +92,26 @@ const faqs: FAQ[] = [
 export default function DemonstracaoPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative bg-luga-hero pt-28 pb-20 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-luga-royal/20 blur-3xl" />
-          <div className="absolute bottom-0 -left-20 w-72 h-72 rounded-full bg-luga-light/10 blur-3xl" />
-        </div>
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
-            <span className="w-2 h-2 rounded-full bg-luga-accent animate-pulse" />
-            <span className="text-sm font-medium text-white">Demonstração gratuita</span>
+      <section className="relative bg-luga-hero pt-24 pb-12 md:pt-28 md:pb-16" id="formulario">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <div className="lg:pt-10">
+            <p className="text-sm font-semibold text-white/80 uppercase tracking-wider mb-4">Demonstração gratuita</p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5">
+              Conheça o Luga ERP na prática.
+            </h1>
+            <p className="text-base sm:text-lg text-white/85 leading-relaxed mb-6">
+              Veja vendas, estoque e financeiro no mesmo sistema. Preencha seus dados e nossa equipe entra em contato para combinar o melhor horário.
+            </p>
+            <ul className="space-y-3 mb-7 text-sm text-white/90">
+              {["Apresentação ao vivo, focada na sua operação", "Espaço para tirar dúvidas sobre o sistema", "Gratuita e sem compromisso"].map(item => (
+                <li key={item} className="flex items-center gap-2"><CheckCircle2 size={18} className="shrink-0" />{item}</li>
+              ))}
+            </ul>
+            <WhatsAppButton label="Prefiro falar pelo WhatsApp" />
           </div>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6">
-            Veja como controlar pedidos, estoque, financeiro, NF-e e cobrança em um só sistema.
-          </h1>
-
-          <p className="text-lg text-white/80 leading-relaxed mb-10 max-w-3xl mx-auto">
-            Uma demonstração rápida do Luga ERP, criado para empresas que vivem a
-            rotina do CEASA, distribuição, hortifruti e alimentos.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Link
-              href="#formulario"
-              data-event="click_demo"
-              className="inline-flex items-center justify-center gap-2 text-base py-4 px-8 rounded-lg font-semibold text-luga-dark bg-white hover:bg-luga-bg active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg"
-            >
-              Agendar demonstração gratuita
-              <ArrowRight size={18} />
-            </Link>
-            <WhatsAppButton label="Falar no WhatsApp" size="lg" />
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            {["Sem compromisso", "100% web — sem instalação", "Atendimento em poucos minutos"].map((item) => (
-              <span key={item} className="text-sm text-white/70">
-                ✓ {item}
-              </span>
-            ))}
+          <div className="min-w-0">
+            <h2 className="sr-only">Solicitar uma demonstração</h2>
+            <LeadForm />
           </div>
         </div>
       </section>
@@ -198,53 +176,6 @@ export default function DemonstracaoPage() {
                 </div>
               </AnimatedSection>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Lead form */}
-      <section className="bg-white py-20" id="formulario">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Left — context */}
-            <AnimatedSection direction="left">
-              <p className="text-sm font-semibold text-luga-accent uppercase tracking-wider mb-4">
-                Agende agora
-              </p>
-              <h2 className="text-3xl font-extrabold text-luga-dark mb-4 leading-tight">
-                Preencha o formulário e nossa equipe entra em contato.
-              </h2>
-              <p className="text-luga-text-secondary leading-relaxed mb-8">
-                Em até 1 dia útil agendamos uma demonstração personalizada,
-                focada na realidade da sua empresa. Sem compromisso, sem pressão.
-              </p>
-
-              <div className="space-y-4 mb-8">
-                {[
-                  "Demonstração ao vivo com o sistema real",
-                  "Focada no seu tipo de operação",
-                  "Sem slides — você vê tudo funcionando",
-                  "Tirar dúvidas com quem conhece o setor",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 size={18} className="text-luga-accent flex-shrink-0" />
-                    <span className="text-sm text-gray-700">{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="p-5 bg-luga-bg rounded-xl border border-gray-200">
-                <p className="text-sm text-luga-text-secondary mb-3">
-                  Prefere falar direto agora?
-                </p>
-                <WhatsAppButton label="Falar no WhatsApp" />
-              </div>
-            </AnimatedSection>
-
-            {/* Right — form */}
-            <AnimatedSection direction="right">
-              <LeadForm />
-            </AnimatedSection>
           </div>
         </div>
       </section>

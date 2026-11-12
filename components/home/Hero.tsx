@@ -15,13 +15,11 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
 
 export default function Hero() {
   return (
-    <section className="relative bg-luga-dark pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden">
-      {/* Full hero background image — already composed with the subject on the right and clean space on the left for the text.
-          object-cover fills the whole section with a single crop of the same photo, so there's never a seam to patch.
-          On mobile the crop re-anchors toward the face (the layout stacks into one column, so there's no separate "text zone"). */}
-      <div className="absolute inset-0">
+    <section className="relative bg-luga-dark pt-24 pb-12 md:pt-32 md:pb-24 overflow-hidden">
+      {/* Decorative hero image is reserved for wider screens; mobile prioritizes the copy. */}
+      <div className="absolute inset-0 hidden sm:block">
         <Image
-          src="/Imagem-Card.png"
+          src="/hero.webp"
           alt="Gestor usando o Luga ERP em um notebook, com indicadores do sistema em destaque"
           fill
           sizes="100vw"
@@ -47,13 +45,13 @@ export default function Hero() {
             </div>
 
             {/* H1 */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6">
+            <h1 className="text-[2rem] sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6">
               Gestão completa para{" "}
               <span className="text-luga-light">distribuidoras, hortifruti e atacadistas.</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg text-white/80 leading-relaxed mb-6 max-w-xl">
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-6 max-w-xl">
               Nascido no dia a dia do mercado: controle pedidos, estoque,
               financeiro, NF-e e boletos em um só sistema.
             </p>
@@ -82,7 +80,7 @@ export default function Hero() {
             </ul>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
               <Link
                 href="/demonstracao"
                 data-event="click_demo"
@@ -96,7 +94,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-event="click_whatsapp"
-                className="inline-flex items-center justify-center gap-2 text-base py-3.5 px-7 rounded-lg font-semibold text-white bg-[#25D366] hover:bg-[#1ebe5b] active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg"
+                className="hidden sm:inline-flex items-center justify-center gap-2 text-base py-3.5 px-7 rounded-lg font-semibold text-white bg-[#25D366] hover:bg-[#1ebe5b] active:scale-[0.98] transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 <WhatsAppIcon />
                 Falar no WhatsApp

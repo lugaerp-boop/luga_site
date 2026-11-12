@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: "/precos",
-        destination: "/contato",
+        destination: "/#planos",
         permanent: true,
       },
     ];
