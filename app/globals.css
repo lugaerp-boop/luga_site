@@ -9,18 +9,44 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    scroll-padding-top: 6rem;
+    scroll-padding-bottom: 6rem;
   }
 
   body {
     @apply font-sans text-gray-900 antialiased;
+    overflow-x: clip;
   }
 
   *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-luga-accent;
+    @apply outline outline-2 outline-offset-2 outline-luga-accent;
+  }
+
+  [id] { scroll-margin-top: 6rem; }
+  dialog::backdrop { background: rgb(13 27 75 / 65%); }
+  input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #dc2626; }
+}
+
+@media (max-width: 767px) {
+  body { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
 @layer components {
+  .skip-link {
+    @apply fixed left-4 top-4 z-[100] -translate-y-32 rounded-lg bg-white p-3 text-luga-dark shadow-lg focus:translate-y-0;
+  }
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white bg-luga-gradient transition-all duration-200 hover:opacity-90 active:scale-[0.98] shadow-md hover:shadow-lg;
   }

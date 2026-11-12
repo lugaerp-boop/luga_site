@@ -49,11 +49,11 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <Image
-                src="/logo-footer.png"
+                src="/logo-footer.webp"
                 alt="Luga ERP"
-                width={200}
-                height={67}
-                className="h-14 w-auto object-contain"
+                width={940}
+                height={360}
+                className="w-44 h-auto object-contain"
               />
             </div>
             <p className="text-sm text-luga-text-tertiary leading-relaxed mb-5">
@@ -183,14 +183,7 @@ export default function Footer() {
           <p className="text-xs text-luga-text-tertiary">
             © {new Date().getFullYear()} Luga ERP. Todos os direitos reservados.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/sobre" className="text-xs text-luga-text-tertiary hover:text-white transition-colors">
-              Política de Privacidade
-            </Link>
-            <Link href="/sobre" className="text-xs text-luga-text-tertiary hover:text-white transition-colors">
-              Termos de Uso
-            </Link>
-          </div>
+          {/* Add legal document links only after the company approves their contents. */}
         </div>
       </div>
     </footer>

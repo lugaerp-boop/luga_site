@@ -33,7 +33,7 @@ const plans = [
     highlighted: true,
     included: [
       "Tudo do plano Essencial",
-      "Emissão de NF-e integrada (Focus NFe)",
+      "Emissão de NF-e integrada",
       "Apuração de ICMS — crédito, débito e GNRE",
       "Livros Fiscais — entradas, saídas e apuração",
       "SPED Fiscal — EFD ICMS/IPI e EFD Contribuições",
@@ -54,7 +54,8 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
 
 export default function Pricing() {
   return (
-    <section className="bg-luga-bg py-20" id="preco">
+    <section className="bg-luga-bg py-20" id="planos">
+      <span id="preco" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-12">
           <p className="text-sm font-semibold text-luga-accent uppercase tracking-wider mb-3">
@@ -69,16 +70,16 @@ export default function Pricing() {
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           {plans.map((plan, i) => (
-            <AnimatedSection key={plan.name} delay={i * 100}>
+            <AnimatedSection key={plan.name} delay={i * 100} className="h-full">
               <div
-                className={`relative h-full flex flex-col rounded-3xl p-8 lg:p-10 transition-all duration-300 ${
+                className={`relative h-full flex flex-col rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300 ${
                   plan.highlighted
                     ? "bg-luga-hero text-white shadow-xl border-2 border-luga-accent"
                     : "bg-white text-luga-dark border border-gray-200 shadow-sm hover:shadow-lg"
                 }`}
               >
                 {plan.highlighted && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold uppercase tracking-wider bg-luga-accent text-white px-4 py-1 rounded-full shadow-md">
+                  <span className="absolute -top-3 right-6 text-xs font-bold uppercase tracking-wider bg-luga-accent text-white px-4 py-1 rounded-full shadow-md">
                     Recomendado
                   </span>
                 )}
@@ -88,19 +89,21 @@ export default function Pricing() {
                     plan.highlighted ? "text-luga-accent" : "text-luga-royal"
                   }`}
                 >
-                  Plano {plan.name}
+                  Plano
                 </p>
                 <h3
                   className={`text-2xl font-extrabold mb-1 ${
                     plan.highlighted ? "text-white" : "text-luga-dark"
                   }`}
                 >
-                  {plan.tagline}
+                  {plan.name}
                 </h3>
+                <p className={`text-base font-semibold mb-2 ${plan.highlighted ? "text-white/90" : "text-luga-royal"}`}>{plan.tagline}</p>
                 <p className={`text-sm mb-6 ${plan.highlighted ? "text-white/80" : "text-luga-text-secondary"}`}>
                   {plan.description}
                 </p>
 
+                <p className={`font-bold text-xl mb-5 ${plan.highlighted ? "text-white" : "text-luga-dark"}`}>Valor sob consulta</p>
                 <ul className="space-y-2.5 mb-8 flex-1">
                   {plan.included.map((item) => (
                     <li

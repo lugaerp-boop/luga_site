@@ -1,28 +1,29 @@
+import Link from "next/link";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { Store, Truck, Apple, Package } from "lucide-react";
 
 const segments = [
   {
     icon: Store,
-    title: "Permissionários de CEASA",
+    title: "Permissionários de CEASA", href: "/erp-para-ceasa",
     description:
       "Controle o que entra, o que sai e o que tem a receber — sem depender de caderno ou planilha.",
   },
   {
     icon: Truck,
-    title: "Distribuidoras de alimentos",
+    title: "Distribuidoras de alimentos", href: "/erp-para-distribuidoras",
     description:
       "Do pedido à entrega: financeiro, NF-e e cobrança integrados em um lugar só.",
   },
   {
     icon: Apple,
-    title: "Atacadistas de hortifruti",
+    title: "Atacadistas de hortifruti", href: "/erp-para-hortifruti",
     description:
       "Estoque atualizado em tempo real, custo médio automático, sem erro de digitação.",
   },
   {
     icon: Package,
-    title: "Distribuidoras de bebidas",
+    title: "Distribuidoras de bebidas", href: "/erp-para-distribuidoras",
     description:
       "Gerencie vasilhames, rotas e tabelas de preço por cliente — tudo dentro do sistema.",
   },
@@ -46,13 +47,14 @@ export default function ForWho() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {segments.map((seg, i) => (
             <AnimatedSection key={seg.title} delay={i * 100}>
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full card-hover">
+              <Link href={seg.href} className="block bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full card-hover">
                 <div className="gradient-icon mb-4">
                   <seg.icon size={22} />
                 </div>
                 <h3 className="text-lg font-bold text-luga-dark mb-2">{seg.title}</h3>
                 <p className="text-sm text-luga-text-secondary leading-relaxed">{seg.description}</p>
-              </div>
+                <span className="inline-block mt-4 text-sm font-semibold text-luga-royal">Conhecer a solução →</span>
+              </Link>
             </AnimatedSection>
           ))}
         </div>

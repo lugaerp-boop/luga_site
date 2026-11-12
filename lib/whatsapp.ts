@@ -1,8 +1,8 @@
 export const WHATSAPP_NUMBER =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5521996452396";
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || "5521996452396";
 
 const DEFAULT_MESSAGE =
-  process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ??
+  process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE?.trim() ||
   "Olá, quero agendar uma demonstração do Luga ERP. Minha empresa é do segmento:";
 
 export function whatsappUrl(message?: string) {

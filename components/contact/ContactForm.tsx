@@ -3,6 +3,8 @@
 import { useState, useRef } from "react";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { EMAILJS_CONFIG } from "@/lib/emailjs";
+import { validateContactForm, clearFieldError, markInvalidField, formText } from "@/lib/form-validation";
+import { attributionFields } from "@/lib/attribution";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
@@ -21,17 +23,18 @@ export default function ContactForm({ buttonLabel = "Enviar mensagem" }: { butto
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (state === "loading" || !validateContactForm(e.currentTarget)) return;
     setState("loading");
     setErrorMsg("");
 
     const formData = new FormData(e.currentTarget);
     const data = {
-      from_name: formData.get("from_name") as string,
-      from_email: formData.get("from_email") as string,
-      phone: formData.get("phone") as string,
-      company: formData.get("company") as string,
-      segment: formData.get("segment") as string,
-      message: formData.get("message") as string,
+      from_name: formText(formData, "from_name"),
+      from_email: formText(formData, "from_email"),
+      phone: formText(formData, "phone"),
+      company: formText(formData, "company"),
+      segment: formText(formData, "segment"),
+      message: formText(formData, "message"),
     };
 
     try {
@@ -41,6 +44,7 @@ export default function ContactForm({ buttonLabel = "Enviar mensagem" }: { butto
         EMAILJS_CONFIG.templateId,
         {
           ...data,
+          ...attributionFields(),
           to_email: "lugaerp@gmail.com",
         },
         EMAILJS_CONFIG.publicKey
@@ -80,7 +84,8 @@ export default function ContactForm({ buttonLabel = "Enviar mensagem" }: { butto
       ref={formRef}
       onSubmit={handleSubmit}
       className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 space-y-5"
-      noValidate
+      onInput={clearFieldError}
+      onInvalidCapture={markInvalidField}
     >
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
@@ -169,7 +174,7 @@ export default function ContactForm({ buttonLabel = "Enviar mensagem" }: { butto
       </div>
 
       {state === "error" && (
-        <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
+        <div role="alert" className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
           <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
           {errorMsg}
         </div>

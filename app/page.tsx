@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Hero from "@/components/home/Hero";
 import Stats from "@/components/home/Stats";
 import Problem from "@/components/home/Problem";
@@ -10,12 +10,11 @@ import Testimonials from "@/components/home/Testimonials";
 import Pricing from "@/components/home/Pricing";
 import FinalCTA from "@/components/home/FinalCTA";
 
-export const metadata: Metadata = {
-  title: "Luga ERP — O ERP feito para distribuidoras e atacadistas de hortifrutigranjeiros",
-  description:
-    "Sistema ERP especializado em distribuidoras e atacadistas de hortifruti. Financeiro, NF-e, boletos e estoque integrados. Tudo incluso.",
-  alternates: { canonical: "https://lugaerp.com.br" },
-};
+export const metadata = pageMetadata(
+  "Luga ERP — O ERP feito para distribuidoras e atacadistas de hortifrutigranjeiros",
+  "Sistema ERP especializado em distribuidoras e atacadistas de hortifruti. Financeiro, NF-e, boletos e estoque integrados. Módulo fiscal no plano Completo.",
+  "/"
+);
 
 export default function HomePage() {
   return (

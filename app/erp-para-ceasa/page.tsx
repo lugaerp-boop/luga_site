@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import {
   DollarSign,
   BarChart3,
@@ -22,17 +22,11 @@ import LeadForm from "@/components/landing/LeadForm";
 import FAQSection, { type FAQ } from "@/components/landing/FAQSection";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
-export const metadata: Metadata = {
-  title: "ERP para Empresas do CEASA | Luga ERP",
-  description:
-    "Sistema de gestão criado a partir da realidade do CEASA para empresas que precisam controlar pedidos, estoque, financeiro, cobranças, NF-e e relatórios.",
-  alternates: { canonical: "https://lugaerp.com.br/erp-para-ceasa" },
-  openGraph: {
-    title: "ERP para Empresas do CEASA | Luga ERP",
-    description:
-      "Sistema de gestão criado a partir da realidade do CEASA para empresas que precisam controlar pedidos, estoque, financeiro, cobranças, NF-e e relatórios.",
-  },
-};
+export const metadata = pageMetadata(
+  "ERP para Empresas do CEASA",
+  "Sistema de gestão criado a partir da realidade do CEASA para empresas que precisam controlar pedidos, estoque, financeiro, cobranças, NF-e e relatórios.",
+  "/erp-para-ceasa"
+);
 
 const pains = [
   {

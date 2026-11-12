@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { WHATSAPP_NUMBER } from "@/lib/whatsapp";
+import { whatsappUrl } from "@/lib/whatsapp";
+import { attributionFields } from "@/lib/attribution";
+import { validateContactForm, clearFieldError, markInvalidField, formText } from "@/lib/form-validation";
 
 const segments = [
   "Permissionário CEASA",
@@ -20,42 +22,47 @@ function WhatsAppIcon() {
 }
 
 export default function WhatsAppForm() {
-  const [opened, setOpened] = useState(false);
+  const [openedUrl, setOpenedUrl] = useState("");
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!validateContactForm(e.currentTarget)) return;
     const formData = new FormData(e.currentTarget);
 
-    const nome = formData.get("from_name") as string;
-    const email = formData.get("from_email") as string;
-    const phone = formData.get("phone") as string;
-    const company = formData.get("company") as string;
-    const segment = formData.get("segment") as string;
-    const message = formData.get("message") as string;
+    const nome = formText(formData, "from_name");
+    const email = formText(formData, "from_email");
+    const phone = formText(formData, "phone");
+    const company = formText(formData, "company");
+    const segment = formText(formData, "segment");
+    const message = formText(formData, "message");
 
+    const attribution = attributionFields();
     const text = [
       "Olá! Vim pelo site da Luga ERP.",
       `Nome: ${nome}`,
       company ? `Empresa: ${company}` : null,
       segment ? `Segmento: ${segment}` : null,
-      `E-mail: ${email}`,
+      email ? `E-mail: ${email}` : null,
       phone ? `Telefone: ${phone}` : null,
       message ? `\nMensagem:\n${message}` : null,
+      attribution.utm_campaign ? `Campanha: ${attribution.utm_campaign}` : null,
+      attribution.utm_source ? `Origem: ${attribution.utm_source}` : null,
     ]
       .filter(Boolean)
       .join("\n");
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    const url = whatsappUrl(text);
 
     window.open(url, "_blank", "noopener,noreferrer");
-    setOpened(true);
+    setOpenedUrl(url);
   }
 
   return (
     <form
       onSubmit={handleSubmit}
       className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 space-y-5"
-      noValidate
+      onInput={clearFieldError}
+      onInvalidCapture={markInvalidField}
     >
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
@@ -64,7 +71,7 @@ export default function WhatsAppForm() {
           </label>
           <input
             id="wa_name"
-            name="from_name"
+            name="from_name" autoComplete="name" maxLength={120}
             type="text"
             required
             placeholder="Seu nome completo"
@@ -73,13 +80,12 @@ export default function WhatsAppForm() {
         </div>
         <div>
           <label htmlFor="wa_email" className="block text-sm font-semibold text-luga-dark mb-1.5">
-            E-mail <span className="text-red-500">*</span>
+            E-mail (opcional)
           </label>
           <input
             id="wa_email"
-            name="from_email"
+            name="from_email" autoComplete="email" maxLength={254}
             type="email"
-            required
             placeholder="seu@email.com.br"
             className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-luga-accent focus:border-transparent transition-all"
           />
@@ -93,7 +99,7 @@ export default function WhatsAppForm() {
           </label>
           <input
             id="wa_phone"
-            name="phone"
+            name="phone" autoComplete="tel" inputMode="tel" maxLength={24}
             type="tel"
             placeholder="(21) 9 9999-9999"
             className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-luga-accent focus:border-transparent transition-all"
@@ -105,7 +111,7 @@ export default function WhatsAppForm() {
           </label>
           <input
             id="wa_company"
-            name="company"
+            name="company" autoComplete="organization" maxLength={160}
             type="text"
             placeholder="Nome da empresa"
             className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-luga-accent focus:border-transparent transition-all"
@@ -135,7 +141,7 @@ export default function WhatsAppForm() {
         </label>
         <textarea
           id="wa_message"
-          name="message"
+          name="message" maxLength={2000}
           required
           rows={4}
           placeholder="Descreva o que você precisa ou o que gostaria de saber sobre a Luga ERP..."
@@ -152,20 +158,13 @@ export default function WhatsAppForm() {
       </button>
 
       <p className="text-center text-xs text-luga-text-secondary">
-        Você será redirecionado para o WhatsApp.
-        Nenhum dado é enviado antes disso.
+        Os dados preenchidos serão abertos no WhatsApp. Conclua o envio da mensagem por lá.
       </p>
 
-      {opened && (
-        <p className="text-center text-xs text-emerald-600 font-medium">
-          WhatsApp aberto em nova aba. Se não abriu,{" "}
-          <button
-            type="submit"
-            className="underline hover:text-emerald-700 transition-colors"
-          >
-            tente novamente
-          </button>
-          .
+      {openedUrl && (
+        <p role="status" className="text-center text-xs text-emerald-700 font-medium">
+          Conclua o envio no WhatsApp. Se a nova aba não abriu,{" "}
+          <a href={openedUrl} target="_blank" rel="noopener noreferrer" className="underline">abra a conversa aqui</a>.
         </p>
       )}
     </form>

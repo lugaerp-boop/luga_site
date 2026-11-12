@@ -1,53 +1,31 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+interface CountUpProps { end: number; duration?: number; prefix?: string; suffix?: string; }
 
-interface CountUpProps {
-  end: number;
-  duration?: number;
-  prefix?: string;
-  suffix?: string;
-}
-
-export default function CountUp({
-  end,
-  duration = 2000,
-  prefix = "",
-  suffix = "",
-}: CountUpProps) {
-  const [count, setCount] = useState(0);
+export default function CountUp({ end, duration = 1500, prefix = "", suffix = "" }: CountUpProps) {
+  const [count, setCount] = useState(end);
   const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const start = Date.now();
-          const tick = () => {
-            const elapsed = Date.now() - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.round(eased * end));
-            if (progress < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.5 }
-    );
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!el || motion.matches || !("IntersectionObserver" in window) || duration <= 0) return;
+    let frame = 0;
+    const finish = () => { if (motion.matches) { cancelAnimationFrame(frame); setCount(end); } };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || motion.matches) return;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1);
+        setCount(Math.round((1 - (1 - progress) ** 3) * end));
+        if (progress < 1) frame = requestAnimationFrame(tick);
+      };
+      frame = requestAnimationFrame(tick);
+      observer.unobserve(el);
+    }, { threshold: 0.5 });
     observer.observe(el);
-    return () => observer.disconnect();
+    motion.addEventListener("change", finish);
+    return () => { observer.disconnect(); cancelAnimationFrame(frame); motion.removeEventListener("change", finish); };
   }, [end, duration]);
-
-  return (
-    <span ref={ref}>
-      {prefix}{count}{suffix}
-    </span>
-  );
+  return <span ref={ref}>{prefix}{count}{suffix}</span>;
 }

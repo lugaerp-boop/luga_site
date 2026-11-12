@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import {
   DollarSign,
   BarChart3,
@@ -23,17 +23,11 @@ import LeadForm from "@/components/landing/LeadForm";
 import FAQSection, { type FAQ } from "@/components/landing/FAQSection";
 import WhatsAppButton from "@/components/landing/WhatsAppButton";
 
-export const metadata: Metadata = {
-  title: "ERP para Hortifruti e Alimentos | Luga ERP",
-  description:
-    "ERP para hortifruti, atacado e distribuição de alimentos. Controle pedidos, estoque, financeiro, cobrança, NF-e, boletos e relatórios em um só sistema.",
-  alternates: { canonical: "https://lugaerp.com.br/erp-para-hortifruti" },
-  openGraph: {
-    title: "ERP para Hortifruti e Alimentos | Luga ERP",
-    description:
-      "ERP para hortifruti, atacado e distribuição de alimentos. Controle pedidos, estoque, financeiro, cobrança, NF-e, boletos e relatórios em um só sistema.",
-  },
-};
+export const metadata = pageMetadata(
+  "ERP para Hortifruti e Alimentos",
+  "ERP para hortifruti, atacado e distribuição de alimentos. Controle pedidos, estoque, financeiro, cobrança, NF-e, boletos e relatórios em um só sistema.",
+  "/erp-para-hortifruti"
+);
 
 const pains = [
   {

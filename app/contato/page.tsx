@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import WhatsAppForm from "@/components/contact/WhatsAppForm";
 import { whatsappUrl } from "@/lib/whatsapp";
@@ -15,12 +15,11 @@ function InstagramIcon({ size = 20 }: { size?: number }) {
   );
 }
 
-export const metadata: Metadata = {
-  title: "Contato — Agende sua demonstração da Luga ERP",
-  description:
-    "Agende uma demonstração da Luga ERP. Mostramos o sistema funcionando com os dados da sua empresa, sem compromisso. Atendimento em poucos minutos.",
-  alternates: { canonical: "https://lugaerp.com.br/contato" },
-};
+export const metadata = pageMetadata(
+  "Contato — Agende sua demonstração da Luga ERP",
+  "Agende uma demonstração da Luga ERP. Mostramos o sistema funcionando com os dados da sua empresa, sem compromisso. Atendimento em poucos minutos.",
+  "/contato"
+);
 
 const cards = [
   {
